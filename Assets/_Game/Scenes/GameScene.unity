@@ -248,11 +248,46 @@ MonoBehaviour:
       Count: 10
     - CoinLevel: 1
       Count: 10
+  - configList:
+    - CoinLevel: 0
+      Count: 10
+    - CoinLevel: 1
+      Count: 10
+  - configList:
+    - CoinLevel: 0
+      Count: 10
+    - CoinLevel: 1
+      Count: 10
+  - configList:
+    - CoinLevel: 0
+      Count: 10
+    - CoinLevel: 1
+      Count: 10
+  - configList:
+    - CoinLevel: 0
+      Count: 10
+    - CoinLevel: 1
+      Count: 10
+  - configList:
+    - CoinLevel: 0
+      Count: 10
+    - CoinLevel: 1
+      Count: 10
+  - configList:
+    - CoinLevel: 0
+      Count: 10
+    - CoinLevel: 1
+      Count: 10
+  - configList:
+    - CoinLevel: 0
+      Count: 10
+    - CoinLevel: 1
+      Count: 10
   _coinStackPrefab: {fileID: 448371544098613818, guid: d84b0384de65dff4e8b4c48101c27a6d,
     type: 3}
   _coinStackPoint: {fileID: 1858009058}
   _horizontalSpace: 2.5
-  _generatedCoinStackCount: 0
+  _generatedCoinStackList: []
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +473,6 @@ MonoBehaviour:
   _tileLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  Pathfinder: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1119,7 @@ MonoBehaviour:
   _timeManager: {fileID: 0}
   _tileManager: {fileID: 1231929757}
   _pathfinding: {fileID: 1790480834}
+  _coinStackManager: {fileID: 325818177}
 --- !u!1 &1681179099
 GameObject:
   m_ObjectHideFlags: 0
