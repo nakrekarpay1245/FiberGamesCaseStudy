@@ -31,15 +31,15 @@ namespace CS3D.CoinSystem
         [Header("Coin Configuration")]
         [Tooltip("List of coin configurations specifying which coin types to create and their counts.")]
         [SerializeField] private List<CoinConfiguration> _coinConfigurations = new List<CoinConfiguration>();
+        public List<CoinConfiguration> CoinConfigurations
+        {
+            get => _coinConfigurations;
+            set => _coinConfigurations = value;
+        }
 
         [Header("Coin Prefab")]
         [Tooltip("The prefab of the coin to instantiate.")]
         [SerializeField] private Coin _coinPrefab; // Prefab to instantiate coins
-
-        private void Awake()
-        {
-            Initialize();
-        }
 
         /// <summary>
         /// Initializes the coin stack based on the provided configurations.
@@ -197,20 +197,5 @@ namespace CS3D.CoinSystem
             CurrentCoinsInStack.Clear();
             CurrentCoinsInStack.AddRange(_coinStack);
         }
-    }
-
-    /// <summary>
-    /// Represents the configuration for coin creation.
-    /// </summary>
-    [System.Serializable]
-    public class CoinConfiguration
-    {
-        [Header("Coin Configuration")]
-        [Tooltip("The level of the coin type to be created.")]
-        public CoinLevel CoinLevel; // Assuming CoinLevel is an enum defined in CS3D._Enums
-
-        [Tooltip("The number of coins to create of this level.")]
-        [Range(1, 100)]
-        public int Count; // Number of coins to create
     }
 }

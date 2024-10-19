@@ -20,8 +20,9 @@ namespace CS3D.Pathfinding
         /// Moves the soldier to a specified tile using A* pathfinding.
         /// </summary>
         /// <param name="targetTile">The tile to move the soldier to.</param>
-        public void MoveToTile(Tile targetTile)
+        public bool TryMoveToTile(Tile targetTile)
         {
+            bool success = false;
             if (_pathTiles.Count > 0)
             {
                 foreach (var tile in _pathTiles)
@@ -36,21 +37,24 @@ namespace CS3D.Pathfinding
             if (targetTile == null || targetTile.IsOccupied || targetTile.IsReserved || !targetTile.IsPlaceable)
             {
                 Debug.LogWarning("Target tile is invalid or occupied or reserved or placed");
-                return;
+                success = false;
+                return success;
             }
 
             Tile startTile = GlobalBinder.singleton.TileManager.GetClosestTile(transform.position);
             if (startTile == null)
             {
                 Debug.LogWarning("Start tile is invalid.");
-                return;
+                success = false;
+                return success;
             }
 
             List<Tile> path = GlobalBinder.singleton.Pathfinding.FindPath(startTile, targetTile);
             if (path.Count == 0)
             {
                 Debug.LogWarning("No path found to the target tile.");
-                return;
+                success = false;
+                return success;
             }
 
             StopAllCoroutines();
@@ -61,6 +65,9 @@ namespace CS3D.Pathfinding
                 _pathTiles.Add(tile);
                 tile.PathVisible();
             }
+
+            success = true;
+            return success;
         }
 
         /// <summary>
@@ -75,6 +82,8 @@ namespace CS3D.Pathfinding
             foreach (Tile tile in path)
             {
                 Vector3 targetPosition = tile.transform.position;
+
+                transform.DOKill();
 
                 // Smoothly move the enemy to the next tile using DOTween
                 transform.DOMove(targetPosition, _tileMovementTime).SetEase(Ease.Linear);

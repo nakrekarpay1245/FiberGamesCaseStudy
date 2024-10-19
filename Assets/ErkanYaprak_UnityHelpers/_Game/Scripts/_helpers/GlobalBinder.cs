@@ -2,6 +2,7 @@ using _Game._helpers.Audios;
 using _Game._helpers.Particles;
 using _Game._helpers.PopUp;
 using _Game._helpers.TimeManagement;
+using CS3D.CoinSystem;
 using CS3D.Pathfinding;
 using CS3D.TileSystem;
 using UnityEngine;
@@ -32,6 +33,9 @@ namespace _Game._helpers
 
         [Tooltip("Handles pathfinding operations for navigating the grid.")]
         [SerializeField] private Pathfinding _pathfinding;
+        
+        [Tooltip("")]
+        [SerializeField] private CoinStackManager _coinStackManager;
 
         /// <summary>
         /// Provides public access to the AudioManager instance.
@@ -85,6 +89,15 @@ namespace _Game._helpers
         {
             get => _pathfinding;
             private set => _pathfinding = value;
+        }
+
+        /// <summary>
+        /// Provides public access to the Pathfinder instance.
+        /// </summary>
+        public CoinStackManager CoinStackManager
+        {
+            get => _coinStackManager;
+            private set => _coinStackManager = value;
         }
     }
 }

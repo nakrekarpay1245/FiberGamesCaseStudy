@@ -2,6 +2,9 @@ using CS3D.TileSystem;
 using CS3D.Pathfinding;
 using UnityEngine;
 using _Game._helpers;
+using DG.Tweening;
+using TMPro.EditorUtilities;
+using CS3D.CoinSystem;
 
 namespace _Game.InputHandling
 {
@@ -20,8 +23,8 @@ namespace _Game.InputHandling
         [SerializeField] private LayerMask _tileLayerMask; // Layer mask to target tiles
 
         private Vector2 _currentMousePosition; // Stores the latest mouse position from the PlayerInputSO
-      
-        public Pathfinder Pathfinder;
+
+        private Pathfinder _currentPathfinder;
 
         private void OnEnable()
         {
@@ -58,6 +61,8 @@ namespace _Game.InputHandling
         /// </summary>
         private void HandleTileSelection()
         {
+            UpdatePathfinder();
+
             Ray ray = Camera.main.ScreenPointToRay(_currentMousePosition);
             RaycastHit hit;
 
@@ -69,7 +74,10 @@ namespace _Game.InputHandling
 
                 if (selectedTile != null)
                 {
-                    Pathfinder.MoveToTile(selectedTile);
+                    if (_currentPathfinder.TryMoveToTile(selectedTile))
+                    {
+                        GlobalBinder.singleton.CoinStackManager.RemoveCoinStack(_currentPathfinder as CoinStack);
+                    }
 
                     // Match control will be provided after the stack system is written.
                     Debug.Log($"Tile selected: {selectedTile.name}");
@@ -79,6 +87,11 @@ namespace _Game.InputHandling
                     Debug.Log("No tile found at the clicked position.");
                 }
             }
+        }
+
+        private void UpdatePathfinder()
+        {
+            _currentPathfinder = GlobalBinder.singleton.CoinStackManager.GetCoinStack();
         }
     }
 }

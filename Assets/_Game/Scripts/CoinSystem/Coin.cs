@@ -59,28 +59,6 @@ namespace CS3D.CoinSystem
         {
             _coinLevelText = GetComponentInChildren<TextMeshPro>();
             _coinRenderer = GetComponentInChildren<Renderer>();
-
-            UpdateCoinVisuals();
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                MoveTo(transform.position + Vector3.forward);
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                MoveTo(transform.position - Vector3.forward);
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                MoveTo(transform.position + Vector3.right);
-            }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                MoveTo(transform.position - Vector3.right);
-            }
         }
 
         /// <summary>
@@ -130,22 +108,6 @@ namespace CS3D.CoinSystem
             {
                 _coinRenderer.material.color = data.CoinColor;
             }
-        }
-    }
-
-    /// <summary>
-    /// Serializable class that defines the coin level and its associated color.
-    /// </summary>
-    [System.Serializable]
-    public class CoinLevelData
-    {
-        public CoinLevel Level;
-        public Color CoinColor;
-
-        public CoinLevelData(CoinLevel level, Color color)
-        {
-            Level = level;
-            CoinColor = color;
         }
     }
 }

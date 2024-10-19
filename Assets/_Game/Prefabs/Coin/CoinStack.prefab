@@ -48,10 +48,6 @@ MonoBehaviour:
   _verticalSpacing: 0.2
   _scaleChangeDuration: 0.25
   CurrentCoinsInStack: []
-  _coinConfigurations:
-  - CoinLevel: 0
-    Count: 10
-  - CoinLevel: 0
-    Count: 10
+  _coinConfigurations: []
   _coinPrefab: {fileID: 3612177684337607079, guid: 7060851377f4cd44aafd51bbc04b85bd,
     type: 3}
