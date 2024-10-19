@@ -13,18 +13,6 @@ namespace _Game.InputHandling
         [Tooltip("ScriptableObject for handling player input.")]
         [SerializeField] private PlayerInputSO _playerInput; // PlayerInput ScriptableObject to manage input events
 
-        [Header("Mouse Raycast Settings")]
-        [Tooltip("Layer mask used for raycasting to determine mouse position on the ground.")]
-        [SerializeField] private LayerMask _groundLayerMask; // Layer to target for mouse raycast (e.g., ground)
-
-        private Camera _mainCamera;
-
-        private void Awake()
-        {
-            // Cache the main camera for performance optimization
-            _mainCamera = Camera.main;
-        }
-
         private void Update()
         {
             HandleMousePositionInput();
@@ -33,6 +21,7 @@ namespace _Game.InputHandling
 
         /// <summary>
         /// Retrieves and forwards mouse position input to the PlayerInputSO.
+        /// Passes the raw mouse screen position (not world space) to the input system.
         /// </summary>
         private void HandleMousePositionInput()
         {
@@ -41,23 +30,19 @@ namespace _Game.InputHandling
         }
 
         /// <summary>
-        /// Retrieves the mouse position in world space using a raycast.
+        /// Retrieves the raw mouse position from the screen coordinates.
+        /// This is a 2D position (in pixels) representing where the mouse is on the screen.
         /// </summary>
-        /// <returns>Vector2 representing the mouse position on the ground in world coordinates.</returns>
+        /// <returns>Vector2 representing the mouse position on the screen.</returns>
         private Vector2 GetMousePosition()
         {
-            // Create a ray from the camera through the mouse position
-            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _groundLayerMask))
-            {
-                // Return the mouse position on the ground in 2D coordinates (x, z)
-                return new Vector2(hit.point.x, hit.point.z);
-            }
-            return Vector2.zero; // Return a default value if no ground is hit
+            Vector3 mousePosition = Input.mousePosition; // Retrieves the raw screen-space position of the mouse
+            return mousePosition; // Converts to Vector2 as required for the event
         }
 
         /// <summary>
         /// Handles mouse button inputs and invokes the corresponding events in the PlayerInputSO.
+        /// This processes both mouse button down and mouse button up events for the left mouse button.
         /// </summary>
         private void HandleMouseButtonInput()
         {
