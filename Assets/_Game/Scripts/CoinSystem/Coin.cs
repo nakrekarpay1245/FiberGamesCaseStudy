@@ -20,9 +20,6 @@ namespace CS3D.CoinSystem
         [Tooltip("The speed at which the coin moves to its target position.")]
         [SerializeField, Range(0.1f, 5f)] private float _movementDuration = 1f;
 
-        [Tooltip("The height the coin reaches during a flip animation.")]
-        [SerializeField, Range(0.1f, 3f)] private float _flipHeight = 1f;
-
         [Header("Coin Display Settings")]
         [Tooltip("Text component used to display the coin's level.")]
         [SerializeField] private TextMeshPro _coinLevelText;
@@ -51,7 +48,11 @@ namespace CS3D.CoinSystem
         public CoinLevel Level
         {
             get => _coinLevel;
-            private set => _coinLevel = value;
+            set
+            {
+                _coinLevel = value;
+                UpdateCoinVisuals();
+            }
         }
 
         private void Awake()
