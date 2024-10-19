@@ -49,7 +49,7 @@ namespace CS3D.TileSystem
             {
                 for (int z = 0; z < _gridHeight; z++)
                 {
-                    Vector3 tilePosition = new Vector3(x - gridOffset.x, 0, z - gridOffset.y);
+                    Vector3 tilePosition = new Vector3(x - gridOffset.x, 0, z - gridOffset.y) + _tileGrid.position;
                     Tile generatedTile = Instantiate(_tilePrefab, tilePosition, Quaternion.identity, _tileGrid);
 
                     generatedTile.name = $"Tile_{x}_{z}";
