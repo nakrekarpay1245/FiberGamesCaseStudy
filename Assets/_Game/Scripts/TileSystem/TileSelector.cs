@@ -1,4 +1,5 @@
 using CS3D.TileSystem;
+using CS3D.Pathfinding;
 using UnityEngine;
 
 namespace _Game.InputHandling
@@ -18,6 +19,9 @@ namespace _Game.InputHandling
         [SerializeField] private LayerMask _tileLayerMask; // Layer mask to target tiles
 
         private Vector2 _currentMousePosition; // Stores the latest mouse position from the PlayerInputSO
+
+        // stacks will be set as they arrive
+        public Pathfinder Pathfinder;
 
         private void OnEnable()
         {
@@ -65,7 +69,9 @@ namespace _Game.InputHandling
 
                 if (selectedTile != null)
                 {
-                    // Handle the logic for when a tile is selected (e.g., highlight the tile)
+                    Pathfinder.MoveToTile(selectedTile);
+
+                    // Match control will be provided after the stack system is written.
                     Debug.Log($"Tile selected: {selectedTile.name}");
                 }
                 else
