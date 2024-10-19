@@ -69,7 +69,7 @@ namespace CS3D.CoinSystem
         public void MoveTo(Vector3 targetPosition)
         {
             // Calculate the direction of movement
-            Vector3 direction = targetPosition - transform.position;
+            Vector3 direction = targetPosition - transform.localPosition;
             float rotationAngleX = 0f;
             float rotationAngleZ = 0f;
 
@@ -86,7 +86,7 @@ namespace CS3D.CoinSystem
             }
 
             // Animate the coin's movement with a flip effect using DOTween
-            transform.DOMove(targetPosition, _movementDuration)
+            transform.DOLocalMove(targetPosition, _movementDuration)
                 .SetEase(Ease.InOutQuad); // Smooth easing for the movement
 
             // Animate the rotation to create a flipping effect while moving

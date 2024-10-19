@@ -3,6 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using CS3D._Enums;
 using CS3D.Pathfinding;
+using CS3D.TileSystem;
 
 namespace CS3D.CoinSystem
 {
@@ -41,6 +42,13 @@ namespace CS3D.CoinSystem
         [Tooltip("The prefab of the coin to instantiate.")]
         [SerializeField] private Coin _coinPrefab; // Prefab to instantiate coins
 
+        [SerializeField] private Tile _tile;
+        public Tile Tile
+        {
+            get => _tile;
+            set => _tile = value;
+        }
+
         /// <summary>
         /// Initializes the coin stack based on the provided configurations.
         /// This method creates the specified number of coins for each coin type.
@@ -62,7 +70,7 @@ namespace CS3D.CoinSystem
                     {
                         // Position the coin based on the current stack size
                         Vector3 targetPosition = CalculateTargetPosition();
-                        coin.transform.position = targetPosition;
+                        coin.transform.localPosition = targetPosition;
 
                         // Add the coin to the stack
                         _coinStack.Push(coin);
@@ -109,6 +117,8 @@ namespace CS3D.CoinSystem
                 Debug.LogWarning("Attempted to add a null coin to the stack.");
                 return;
             }
+
+            Debug.LogWarning($"Add {coin} to stack");
 
             // Set the coin's parent to the CoinStack for hierarchy management
             coin.transform.SetParent(transform);
@@ -166,6 +176,19 @@ namespace CS3D.CoinSystem
             return removedCoin;
         }
 
+        public Coin GetCoin()
+        {
+            if (_coinStack.Count == 0)
+            {
+                Debug.LogWarning("Coin stack is empty. No coin to return.");
+                return null;
+            }
+
+            // Return the last coin in the stack without removing it
+            Coin coin = _coinStack.Peek();
+            return coin;
+        }
+
         /// <summary>
         /// Calculates the target position for the next coin based on the current stack size.
         /// </summary>
@@ -173,7 +196,7 @@ namespace CS3D.CoinSystem
         private Vector3 CalculateTargetPosition()
         {
             int coinIndex = _coinStack.Count - 1; // Get the index of the new coin
-            return new Vector3(transform.position.x, coinIndex * _verticalSpacing, transform.position.z);
+            return new Vector3(0, coinIndex * _verticalSpacing, 0);
         }
 
         /// <summary>
@@ -196,6 +219,26 @@ namespace CS3D.CoinSystem
         {
             CurrentCoinsInStack.Clear();
             CurrentCoinsInStack.AddRange(_coinStack);
+        }
+
+        /// <summary>
+        /// Finds and returns a list of coins in the stack that match the specified coin level.
+        /// </summary>
+        /// <param name="level">The coin level to search for in the stack.</param>
+        /// <returns>A list of coins that have the specified level.</returns>
+        public List<Coin> GetCoinsByLevel(CoinLevel level)
+        {
+            List<Coin> matchingCoins = new List<Coin>();
+
+            foreach (Coin coin in _coinStack)
+            {
+                if (coin.Level == level)
+                {
+                    matchingCoins.Add(coin);
+                }
+            }
+
+            return matchingCoins;
         }
     }
 }

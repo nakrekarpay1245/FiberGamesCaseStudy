@@ -35,6 +35,8 @@ namespace CS3D.TileSystem
 
         private Tile[,] _tileGrid;
 
+        public Tile[,] TileGrid { get => _tileGrid; private set => _tileGrid = value; }
+
         /// <summary>
         /// Initializes the tile grid when the game starts.
         /// </summary>

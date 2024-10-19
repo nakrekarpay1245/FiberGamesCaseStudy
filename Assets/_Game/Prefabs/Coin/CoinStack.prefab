@@ -44,10 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76471ca4c59099e498a3e3dd5136d9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tileMovementTime: 0.025
+  _tileMovementTime: 0.02
   _verticalSpacing: 0.2
   _scaleChangeDuration: 0.25
   CurrentCoinsInStack: []
   _coinConfigurations: []
   _coinPrefab: {fileID: 3612177684337607079, guid: 7060851377f4cd44aafd51bbc04b85bd,
     type: 3}
+  _tile: {fileID: 0}

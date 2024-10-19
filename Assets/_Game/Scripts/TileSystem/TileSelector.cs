@@ -76,7 +76,11 @@ namespace _Game.InputHandling
                 {
                     if (_currentPathfinder.TryMoveToTile(selectedTile))
                     {
+                        CoinStack coinStack = _currentPathfinder as CoinStack;
                         GlobalBinder.singleton.CoinStackManager.RemoveCoinStack(_currentPathfinder as CoinStack);
+                        selectedTile.CoinStack = coinStack;
+                        coinStack.Tile = selectedTile;
+                        GlobalBinder.singleton.MatchChecker.CheckForMatches();
                     }
 
                     // Match control will be provided after the stack system is written.

@@ -1,3 +1,4 @@
+using CS3D.CoinSystem;
 using UnityEngine;
 
 namespace CS3D.TileSystem
@@ -25,6 +26,13 @@ namespace CS3D.TileSystem
 
         private Vector2Int _tileGridPosition;
 
+        [SerializeField] private CoinStack _coinStack;
+        public CoinStack CoinStack
+        {
+            get => _coinStack;
+            set => _coinStack = value;
+        }
+
         /// <summary>
         /// Gets the grid position of this tile as a Vector2Int.
         /// </summary>
@@ -32,7 +40,7 @@ namespace CS3D.TileSystem
         {
             get => _tileGridPosition;
             private set => _tileGridPosition = value;
-        }        
+        }
 
         /// <summary>
         /// Gets a value indicating whether an object can be placed on this tile.
@@ -126,6 +134,16 @@ namespace CS3D.TileSystem
             if (_pathVisualizer != null)
             {
                 _pathVisualizer.SetActive(false);
+            }
+        }
+
+        public void ControlCoinStack()
+        {
+            if (_coinStack.CurrentCoinsInStack.Count <= 0)
+            {
+                _coinStack = null;
+                _isReserved = false;
+                _isOccupied = false;
             }
         }
     }

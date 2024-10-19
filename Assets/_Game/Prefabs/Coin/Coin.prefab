@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinLevel: 1
-  _movementDuration: 1
+  _movementDuration: 0.25
   _coinLevelText: {fileID: 0}
   _coinRenderer: {fileID: 0}
   _coinLevelDataList:
