@@ -1,3 +1,4 @@
+using _Game._helpers;
 using CS3D.TileSystem;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,6 @@ namespace CS3D.Pathfinding
     /// </summary>
     public class Pathfinding : MonoBehaviour
     {
-        // globalbinder or static
-        public TileManager TileManager;
-
         /// <summary>
         /// Finds the shortest path between the start and target tiles using the A* algorithm.
         /// </summary>
@@ -51,7 +49,7 @@ namespace CS3D.Pathfinding
                 closedSet.Add(currentTile);
 
                 // Evaluate neighbors
-                foreach (Tile neighbor in TileManager.GetNeighbors(currentTile))
+                foreach (Tile neighbor in GlobalBinder.singleton.TileManager.GetNeighbors(currentTile))
                 {
                     if (closedSet.Contains(neighbor) || neighbor.IsOccupied || !neighbor.IsPlaceable || neighbor.IsReserved)
                     {

@@ -1,3 +1,4 @@
+using _Game._helpers;
 using CS3D.TileSystem;
 using DG.Tweening;
 using System.Collections;
@@ -14,12 +15,6 @@ namespace CS3D.Pathfinding
         [SerializeField] private float _tileMovementTime = 1f;
 
         private List<Tile> _pathTiles = new List<Tile>();
-
-        //GlobalBinder or static
-        public Pathfinding Pathfinding;
-
-        //GlobalBinder or static
-        public TileManager TileManager;
 
         /// <summary>
         /// Moves the soldier to a specified tile using A* pathfinding.
@@ -44,14 +39,14 @@ namespace CS3D.Pathfinding
                 return;
             }
 
-            Tile startTile = TileManager.GetClosestTile(transform.position);
+            Tile startTile = GlobalBinder.singleton.TileManager.GetClosestTile(transform.position);
             if (startTile == null)
             {
                 Debug.LogWarning("Start tile is invalid.");
                 return;
             }
 
-            List<Tile> path = Pathfinding.FindPath(startTile, targetTile);
+            List<Tile> path = GlobalBinder.singleton.Pathfinding.FindPath(startTile, targetTile);
             if (path.Count == 0)
             {
                 Debug.LogWarning("No path found to the target tile.");
