@@ -37,6 +37,16 @@ namespace CS3D.CoinSystem
             set => _coinConfigurations = value;
         }
 
+        [Header("Effect")]
+        [Header("Sound")]
+        [Tooltip("")]
+        public string _coinCollectSoundKey = "coin_collect";
+        [Tooltip("")]
+        public string _coinFlipSoundKey = "coin_flip";
+        [Header("Particle")]
+        [Tooltip("")]
+        public string _coinCollectParticleKey = "coin_collect";
+
         /// <summary>
         /// Gets the CoinLevel of the coin at the top of the stack.
         /// Returns null if the stack is empty.
@@ -142,6 +152,8 @@ namespace CS3D.CoinSystem
             // Move the coin to its position in the stack with a smooth animation
             coin.MoveTo(targetPosition);
 
+            GlobalBinder.singleton.AudioManager.PlaySound(_coinFlipSoundKey);
+
             // Add the coin to the list
             _coinList.Add(coin);
         }
@@ -201,7 +213,9 @@ namespace CS3D.CoinSystem
             coin.transform.DOScale(Vector3.zero, GlobalBinder.singleton.TimeManager.CoinScaleChangeDuration).OnComplete(() =>
             {
                 // Destroy the coin object after scaling down
-                Destroy(coin.gameObject);
+                GlobalBinder.singleton.CoinManager.DeactivateCoin(coin);
+                GlobalBinder.singleton.AudioManager.PlaySound(_coinCollectSoundKey);
+                GlobalBinder.singleton.ParticleManager.PlayParticleAtPoint(_coinCollectSoundKey, coin.transform.position);
             });
         }
 
