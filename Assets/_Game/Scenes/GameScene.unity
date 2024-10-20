@@ -168,7 +168,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridWidth: 6
   _gridHeight: 7
-  _nonPlaceableTilePositions: []
+  _nonPlaceableTilePositions:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 2, y: 0}
+  - {x: 3, y: 0}
 --- !u!1 &105872529
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,10 +442,10 @@ MonoBehaviour:
     - CoinLevel: 2
       Count: 7
   - configList:
-    - CoinLevel: 2
+    - CoinLevel: 0
       Count: 7
   - configList:
-    - CoinLevel: 2
+    - CoinLevel: 1
       Count: 7
   - configList:
     - CoinLevel: 2
@@ -1097,6 +1101,19 @@ MonoBehaviour:
   - Name: coin_collect
     _clipArray:
     - {fileID: 8300000, guid: 9be733241851dad42946386d0412b230, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+  - Name: level_complete
+    _clipArray:
+    - {fileID: 8300000, guid: 4f150ccc1c9e59c4e9d0e5e64bdccd53, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+  - Name: level_fail
+    _clipArray:
+    - {fileID: 8300000, guid: 746a13689e7deef47b9d9aa87b339cb3, type: 3}
+    - {fileID: 8300000, guid: 21cb5f7b6d53f96458df177f0308a331, type: 3}
     Volume: 1
     Pitch: 1
     Loop: 0
@@ -1779,6 +1796,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _gameData: {fileID: 11400000, guid: 693e168b1b1a8324d992969fa945176e, type: 2}
+  _levelCompleteSoundKey: level_complete
+  _levelFailSoundKey: level_fail
 --- !u!1 &1094077337
 GameObject:
   m_ObjectHideFlags: 0

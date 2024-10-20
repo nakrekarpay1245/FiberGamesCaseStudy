@@ -1,3 +1,4 @@
+using _Game._helpers;
 using CS3D.Data;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,6 +24,13 @@ namespace CS3D.LevelSystem
 
         private bool _isLevelEnded = false; // Flag to track if the level has already ended
 
+        [Header("Effect")]
+        [Header("Sound")]
+        [Tooltip("")]
+        public string _levelCompleteSoundKey = "level_complete";
+        [Tooltip("")]
+        public string _levelFailSoundKey = "level_fail";
+
         /// <summary>
         /// Called to trigger the level completion sequence.
         /// Executes the completion logic and invokes the Level Complete Unity Event.
@@ -37,6 +45,9 @@ namespace CS3D.LevelSystem
 
             Debug.Log("Level Completed");
             _isLevelEnded = true; // Mark the level as ended
+
+            GlobalBinder.singleton.AudioManager.PlaySound(_levelCompleteSoundKey);
+
             OnLevelComplete?.Invoke(_gameData.CurrentLevelIndex);
         }
 
@@ -54,6 +65,9 @@ namespace CS3D.LevelSystem
 
             Debug.Log("Level Failed");
             _isLevelEnded = true; // Mark the level as ended
+
+            GlobalBinder.singleton.AudioManager.PlaySound(_levelFailSoundKey);
+
             OnLevelFail?.Invoke(_gameData.CurrentLevelIndex);
         }
 
