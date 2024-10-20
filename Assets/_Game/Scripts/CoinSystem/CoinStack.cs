@@ -5,6 +5,7 @@ using CS3D._Enums;
 using CS3D.Pathfinding;
 using CS3D.TileSystem;
 using _Game._helpers;
+using _Game._helpers.TimeManagement;
 
 namespace CS3D.CoinSystem
 {
@@ -18,18 +19,10 @@ namespace CS3D.CoinSystem
         [Tooltip("The vertical distance between each coin in the stack.")]
         [SerializeField, Range(0.1f, 0.25f)] private float _verticalSpacing = 0.2f;
 
-        [Tooltip("Duration for the scale change animation when removing coins.")]
-        [SerializeField, Range(0.1f, 1f)] private float _scaleChangeDuration = 0.25f;
-
         [Tooltip("The maximum weight limit for coins in the stack before triggering removal.")]
         [SerializeField] private int _maxWeightLimit = 10;
 
         [SerializeField] private Vector3 _popUpTextOffset = new Vector3(0, 1, -1);
-
-        [Header("Coin Removal Settings")]
-        [SerializeField, Tooltip("The interval (in seconds) between consecutive coin removal actions.")]
-        [Range(0.001f, 0.1f)]
-        private float _coinRemovalInterval = 0.025f;
 
         [Header("Coin Stack")]
         [Tooltip("The list that holds the coins.")]
@@ -43,10 +36,6 @@ namespace CS3D.CoinSystem
             get => _coinConfigurations;
             set => _coinConfigurations = value;
         }
-
-        [Header("Coin Prefab")]
-        [Tooltip("The prefab of the coin to instantiate.")]
-        [SerializeField] private string _coinPrefabResourceKey = "Coin/Coin";
 
         /// <summary>
         /// Gets the CoinLevel of the coin at the top of the stack.
@@ -96,7 +85,7 @@ namespace CS3D.CoinSystem
                 for (int j = 0; j < config.Count; j++)
                 {
                     // Create a coin of the specified type
-                    Coin coin = CreateCoin(config.CoinLevel);
+                    Coin coin = GetCoin(config.CoinLevel);
                     if (coin != null)
                     {
                         // Position the coin based on the current list size
@@ -115,23 +104,19 @@ namespace CS3D.CoinSystem
         /// </summary>
         /// <param name="level">The level of the coin to create.</param>
         /// <returns>The created coin instance, or null if creation failed.</returns>
-        private Coin CreateCoin(CoinLevel level)
+        private Coin GetCoin(CoinLevel level)
         {
-            Coin coinPrefab = Resources.Load<Coin>(_coinPrefabResourceKey);
-
-            if (coinPrefab != null)
+            if (GlobalBinder.singleton.CoinManager != null)
             {
-                // Instantiate the coin prefab
-                Coin coinObject = Instantiate(coinPrefab, transform);
-
-                if (coinObject != null)
+                Coin coin = GlobalBinder.singleton.CoinManager.GetCoin(transform.position, transform);
+                if (coin != null)
                 {
-                    coinObject.Level = level; // Set the current level to the coin
-                    return coinObject;
+                    coin.Level = level; // Set the current level to the coin
+                    return coin;
                 }
             }
 
-            Debug.LogWarning("Coin prefab is not assigned or coin creation failed.");
+            Debug.LogWarning("Coin Manager is not assigned or coin pool is failed.");
             return null;
         }
 
@@ -213,7 +198,7 @@ namespace CS3D.CoinSystem
         /// <param name="coin">The coin to be scaled down and destroyed.</param>
         private void ScaleAndDestroyCoin(Coin coin)
         {
-            coin.transform.DOScale(Vector3.zero, _scaleChangeDuration).OnComplete(() =>
+            coin.transform.DOScale(Vector3.zero, GlobalBinder.singleton.TimeManager.CoinScaleChangeDuration).OnComplete(() =>
             {
                 // Destroy the coin object after scaling down
                 Destroy(coin.gameObject);
@@ -239,7 +224,7 @@ namespace CS3D.CoinSystem
                 {
                     coinRemovalSequence.AppendCallback(() => RemoveAndDestroyCoin());
                     // Add an interval (adjust as necessary)
-                    coinRemovalSequence.AppendInterval(_coinRemovalInterval); // Adjust the interval as needed
+                    coinRemovalSequence.AppendInterval(GlobalBinder.singleton.TimeManager.CoinRemovalInterval); // Adjust the interval as needed
                 }
 
                 // Optionally, you can add a completion callback to handle any logic after removal

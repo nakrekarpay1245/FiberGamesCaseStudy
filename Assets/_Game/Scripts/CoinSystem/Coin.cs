@@ -3,6 +3,7 @@ using TMPro;
 using DG.Tweening;
 using CS3D._Enums;
 using System.Collections.Generic;
+using _Game._helpers;
 
 namespace CS3D.CoinSystem
 {
@@ -16,9 +17,6 @@ namespace CS3D.CoinSystem
         [Header("Coin Settings")]
         [Tooltip("Level of the coin which determines its value or appearance.")]
         [SerializeField] private CoinLevel _coinLevel = CoinLevel.Level1;
-
-        [Tooltip("The speed at which the coin moves to its target position.")]
-        [SerializeField, Range(0.1f, 5f)] private float _movementDuration = 1f;
 
         [Header("Coin Display Settings")]
         [Tooltip("Text component used to display the coin's level.")]
@@ -86,11 +84,12 @@ namespace CS3D.CoinSystem
             }
 
             // Animate the coin's movement with a flip effect using DOTween
-            transform.DOLocalMove(targetPosition, _movementDuration)
+            transform.DOLocalMove(targetPosition, GlobalBinder.singleton.TimeManager.CoinFlipMovementDuration)
                 .SetEase(Ease.InOutQuad); // Smooth easing for the movement
 
             // Animate the rotation to create a flipping effect while moving
-            transform.DORotate(new Vector3(rotationAngleX, 0f, rotationAngleZ), _movementDuration, RotateMode.LocalAxisAdd)
+            transform.DORotate(new Vector3(rotationAngleX, 0f, rotationAngleZ),
+                GlobalBinder.singleton.TimeManager.CoinFlipMovementDuration, RotateMode.LocalAxisAdd)
                 .SetEase(Ease.InOutQuad); // Smooth easing for the rotation
         }
 

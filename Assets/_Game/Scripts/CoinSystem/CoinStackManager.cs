@@ -32,7 +32,7 @@ namespace CS3D.CoinSystem
         /// <summary>
         /// Initializes the coin stacks based on the predefined configurations.
         /// </summary>
-        private void Awake()
+        private void Start()
         {
             GenerateAllCoinStacks();
         }

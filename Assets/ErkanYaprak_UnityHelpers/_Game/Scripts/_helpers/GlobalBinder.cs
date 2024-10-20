@@ -44,6 +44,9 @@ namespace _Game._helpers
 
         [Tooltip("")]
         [SerializeField] private ProgressManager _progressManager;
+        
+        [Tooltip("")]
+        [SerializeField] private CoinManager _coinManager;
 
         /// <summary>
         /// Provides public access to the AudioManager instance.
@@ -124,6 +127,15 @@ namespace _Game._helpers
         {
             get => _progressManager;
             private set => _progressManager = value;
+        }
+
+        /// <summary>
+        /// Provides public access to the CoinManager instance.
+        /// </summary>
+        public CoinManager CoinManager
+        {
+            get => _coinManager;
+            private set => _coinManager = value;
         }
     }
 }
