@@ -157,7 +157,7 @@ namespace CS3D.TileSystem
 
         public void ControlCoinStack()
         {
-            if (_coinStack.CurrentCoinsInStack.Count <= 0)
+            if (_coinStack.CoinList.Count <= 0)
             {
                 _coinStack = null;
                 _isReserved = false;

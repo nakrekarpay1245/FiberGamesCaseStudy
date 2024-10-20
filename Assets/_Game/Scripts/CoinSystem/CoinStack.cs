@@ -8,8 +8,8 @@ using CS3D.TileSystem;
 namespace CS3D.CoinSystem
 {
     /// <summary>
-    /// Manages a stack of coins using a stack data structure for FILO (First In, Last Out) operations.
-    /// Handles adding and removing coins, positioning them with smooth animations using DOTween.
+    /// Manages a list of coins using a List data structure to maintain LIFO (Last In, First Out) behavior.
+    /// Handles adding and removing coins, and positions them with smooth animations using DOTween.
     /// </summary>
     public class CoinStack : Pathfinder
     {
@@ -21,13 +21,9 @@ namespace CS3D.CoinSystem
         [SerializeField, Range(0.1f, 1f)] private float _scaleChangeDuration = 0.25f;
 
         [Header("Coin Stack")]
-        [Tooltip("The stack that holds the coins.")]
-        private Stack<Coin> _coinStack = new Stack<Coin>();
-
-        // Public list to expose current coins in the stack
-        [Header("Current Coins in Stack")]
-        [Tooltip("A temporary list to visualize the coins currently in the stack.")]
-        public List<Coin> CurrentCoinsInStack = new List<Coin>();
+        [Tooltip("The list that holds the coins.")]
+        [SerializeField] private List<Coin> _coinList = new List<Coin>();
+        public List<Coin> CoinList { get => _coinList; private set => _coinList = value; }
 
         [Header("Coin Configuration")]
         [Tooltip("List of coin configurations specifying which coin types to create and their counts.")]
@@ -55,28 +51,24 @@ namespace CS3D.CoinSystem
         /// </summary>
         public void Initialize()
         {
-            // Clear the existing stack before initializing
-            _coinStack.Clear();
+            // Clear the existing list before initializing
+            _coinList.Clear();
 
             // Iterate through each coin configuration
-            for (int i = 0; i < _coinConfigurations.Count; i++)
+            foreach (CoinConfiguration config in _coinConfigurations)
             {
-                CoinConfiguration config = _coinConfigurations[i];
                 for (int j = 0; j < config.Count; j++)
                 {
                     // Create a coin of the specified type
                     Coin coin = CreateCoin(config.CoinLevel);
                     if (coin != null)
                     {
-                        // Position the coin based on the current stack size
+                        // Position the coin based on the current list size
                         Vector3 targetPosition = CalculateTargetPosition();
                         coin.transform.localPosition = targetPosition;
 
-                        // Add the coin to the stack
-                        _coinStack.Push(coin);
-
-                        // Update the public list to reflect the current state of the stack
-                        UpdateCurrentCoinsInStack();
+                        // Add the coin to the list
+                        _coinList.Add(coin);
                     }
                 }
             }
@@ -108,7 +100,7 @@ namespace CS3D.CoinSystem
         }
 
         /// <summary>
-        /// Adds a coin to the stack and positions it at the correct height with a smooth animation.
+        /// Adds a coin to the list and positions it at the correct height with a smooth animation.
         /// The coin's parent is set to the CoinStack for proper hierarchy management.
         /// </summary>
         /// <param name="coin">The coin to be added to the stack.</param>
@@ -120,84 +112,77 @@ namespace CS3D.CoinSystem
                 return;
             }
 
-            Debug.LogWarning($"Add {coin} to stack");
-
             // Set the coin's parent to the CoinStack for hierarchy management
             coin.transform.SetParent(transform);
 
-            // Calculate the target position for the new coin in the stack
+            // Calculate the target position for the new coin in the list
             Vector3 targetPosition = CalculateTargetPosition();
 
             // Move the coin to its position in the stack with a smooth animation
             coin.MoveTo(targetPosition);
 
-            // Add the coin to the stack
-            _coinStack.Push(coin);
-
-            // Update the public list to reflect the current state of the stack
-            UpdateCurrentCoinsInStack();
+            // Add the coin to the list
+            _coinList.Add(coin);
         }
 
         /// <summary>
-        /// Removes the coin from the top of the stack, scales it down, and then destroys it.
+        /// Removes the coin from the top of the list, scales it down, and then destroys it.
         /// </summary>
         public void RemoveAndDestroyCoin()
         {
-            if (_coinStack.Count == 0)
+            if (_coinList.Count == 0)
             {
-                Debug.LogWarning("Coin stack is empty. No coin to remove.");
+                Debug.LogWarning("Coin list is empty. No coin to remove.");
                 return;
             }
 
-            // Remove the coin from the top of the stack
-            Coin removedCoin = _coinStack.Pop();
+            // Remove the coin from the top of the list
+            Coin removedCoin = _coinList[_coinList.Count - 1];
+            _coinList.RemoveAt(_coinList.Count - 1);
             ScaleAndDestroyCoin(removedCoin);
-
-            // Update the public list to reflect the current state of the stack
-            UpdateCurrentCoinsInStack();
         }
 
         /// <summary>
-        /// Removes and returns the coin from the top of the stack without scaling it down.
+        /// Removes and returns the coin from the top of the list without scaling it down.
         /// </summary>
-        /// <returns>The coin that was removed from the stack, or null if the stack is empty.</returns>
+        /// <returns>The coin that was removed from the list, or null if the list is empty.</returns>
         public Coin RemoveCoin()
         {
-            if (_coinStack.Count == 0)
+            if (_coinList.Count == 0)
             {
-                Debug.LogWarning("Coin stack is empty. No coin to remove.");
+                Debug.LogWarning("Coin list is empty. No coin to remove.");
                 return null;
             }
 
-            // Remove the coin from the top of the stack
-            Coin removedCoin = _coinStack.Pop();
-
-            // Update the public list to reflect the current state of the stack
-            UpdateCurrentCoinsInStack();
+            // Remove the coin from the top of the list
+            Coin removedCoin = _coinList[_coinList.Count - 1];
+            _coinList.RemoveAt(_coinList.Count - 1);
 
             return removedCoin;
         }
 
+        /// <summary>
+        /// Gets the coin from the top of the list without removing it.
+        /// </summary>
+        /// <returns>The coin at the top of the list, or null if the list is empty.</returns>
         public Coin GetCoin()
         {
-            if (_coinStack.Count == 0)
+            if (_coinList.Count == 0)
             {
-                Debug.LogWarning("Coin stack is empty. No coin to return.");
+                Debug.LogWarning("Coin list is empty. No coin to return.");
                 return null;
             }
 
-            // Return the last coin in the stack without removing it
-            Coin coin = _coinStack.Peek();
-            return coin;
+            return _coinList[_coinList.Count - 1];
         }
 
         /// <summary>
-        /// Calculates the target position for the next coin based on the current stack size.
+        /// Calculates the target position for the next coin based on the current list size.
         /// </summary>
         /// <returns>The target position for the new coin in the stack.</returns>
         private Vector3 CalculateTargetPosition()
         {
-            int coinIndex = _coinStack.Count - 1; // Get the index of the new coin
+            int coinIndex = _coinList.Count; // Get the index of the new coin
             return new Vector3(0, coinIndex * _verticalSpacing, 0);
         }
 
@@ -215,24 +200,15 @@ namespace CS3D.CoinSystem
         }
 
         /// <summary>
-        /// Updates the public list to reflect the current coins in the stack.
+        /// Finds and returns a list of coins in the list that match the specified coin level.
         /// </summary>
-        private void UpdateCurrentCoinsInStack()
-        {
-            CurrentCoinsInStack.Clear();
-            CurrentCoinsInStack.AddRange(_coinStack);
-        }
-
-        /// <summary>
-        /// Finds and returns a list of coins in the stack that match the specified coin level.
-        /// </summary>
-        /// <param name="level">The coin level to search for in the stack.</param>
+        /// <param name="level">The coin level to search for in the list.</param>
         /// <returns>A list of coins that have the specified level.</returns>
         public List<Coin> GetCoinsByLevel(CoinLevel level)
         {
             List<Coin> matchingCoins = new List<Coin>();
 
-            foreach (Coin coin in _coinStack)
+            foreach (Coin coin in _coinList)
             {
                 if (coin.Level == level)
                 {
