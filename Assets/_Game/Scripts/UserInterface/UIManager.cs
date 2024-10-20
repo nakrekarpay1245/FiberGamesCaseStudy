@@ -123,7 +123,8 @@ namespace CS3D.UI
             HideAllUIElements();
 
             // Show relevant UI elements for level completion with staggered animation
-            ShowUIElementsWithSequentialAnimation(_resultMenu, _levelCompleteTitle, _completeEmojiImage, _nextLevelButton.gameObject);
+            ShowUIElementsWithSequentialAnimation(_resultMenu, _levelCompleteTitle, _currentLevelText.gameObject,
+                _completeEmojiImage, _nextLevelButton.gameObject);
 
             UpdateLevelNumberText(levelNumber);
         }
@@ -137,7 +138,8 @@ namespace CS3D.UI
             HideAllUIElements();
 
             // Show relevant UI elements for level failure with staggered animation
-            ShowUIElementsWithSequentialAnimation(_resultMenu, _levelFailTitle, _failEmojiImage, _restartButton.gameObject);
+            ShowUIElementsWithSequentialAnimation(_resultMenu, _levelFailTitle, _currentLevelText.gameObject,
+                _failEmojiImage, _restartButton.gameObject);
 
             UpdateLevelNumberText(levelNumber);
         }
