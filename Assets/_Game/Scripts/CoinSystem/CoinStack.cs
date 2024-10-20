@@ -34,7 +34,6 @@ namespace CS3D.CoinSystem
         [Header("Coin Stack")]
         [Tooltip("The list that holds the coins.")]
         [SerializeField] private List<Coin> _coinList = new List<Coin>();
-        public List<Coin> CoinList { get => _coinList; private set => _coinList = value; }
 
         [Header("Coin Configuration")]
         [Tooltip("List of coin configurations specifying which coin types to create and their counts.")]
@@ -48,13 +47,6 @@ namespace CS3D.CoinSystem
         [Header("Coin Prefab")]
         [Tooltip("The prefab of the coin to instantiate.")]
         [SerializeField] private string _coinPrefabResourceKey = "Coin/Coin";
-
-        [SerializeField] private Tile _tile;
-        public Tile Tile
-        {
-            get => _tile;
-            set => _tile = value;
-        }
 
         /// <summary>
         /// Gets the CoinLevel of the coin at the top of the stack.
@@ -206,21 +198,6 @@ namespace CS3D.CoinSystem
         }
 
         /// <summary>
-        /// Gets the coin from the top of the list without removing it.
-        /// </summary>
-        /// <returns>The coin at the top of the list, or null if the list is empty.</returns>
-        public Coin GetCoin()
-        {
-            if (_coinList.Count == 0)
-            {
-                Debug.LogWarning("Coin list is empty. No coin to return.");
-                return null;
-            }
-
-            return _coinList[_coinList.Count - 1];
-        }
-
-        /// <summary>
         /// Calculates the target position for the next coin based on the current list size.
         /// </summary>
         /// <returns>The target position for the new coin in the stack.</returns>
@@ -269,7 +246,7 @@ namespace CS3D.CoinSystem
                 coinRemovalSequence.OnComplete(() =>
                 {
                     GlobalBinder.singleton.MatchChecker.CheckForMatches();
-                    Debug.Log("Coin removal complete. Weight is now below the limit.");
+                    //Debug.Log("Coin removal complete. Weight is now below the limit.");
                 });
             }
         }
@@ -279,8 +256,6 @@ namespace CS3D.CoinSystem
         /// </summary>
         private void LogScoreForTopCoins()
         {
-            Debug.Log("Calculating score for top coins...");
-
             // Calculate score based on the levels of the top coins
             int score = 0;
             int weightTileCount = Weight;
@@ -291,11 +266,11 @@ namespace CS3D.CoinSystem
                 score += ((int)Level + 1);
             }
 
-            Vector3 popUpTextPosition = CalculateTargetPosition() + transform.position + _popUpTextOffset;
             string popUpString = $"+{score}";
+            Vector3 popUpTextPosition = CalculateTargetPosition() + transform.position + _popUpTextOffset;
             GlobalBinder.singleton.PopUpTextManager.ShowPopUpText(popUpTextPosition, popUpString);
+
             GlobalBinder.singleton.ProgressManager.AddScore(score);
-            Debug.Log($"Total Score from Top Coins: {score}");
         }
     }
 }

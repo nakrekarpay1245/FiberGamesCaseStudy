@@ -91,13 +91,6 @@ namespace CS3D.Pathfinding
                 // Wait for the movement to complete before proceeding to the next tile
                 yield return new WaitForSeconds(_tileMovementTime);
             }
-
-            OccupyTile(path.LastOrDefault());
-        }
-
-        public virtual void OccupyTile(Tile tile)
-        {
-            tile.SetOccupied(true);
         }
 
         public virtual void ReserveTile(Tile tile)

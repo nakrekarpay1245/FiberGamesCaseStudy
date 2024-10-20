@@ -80,7 +80,6 @@ namespace _Game.InputHandling
                         GlobalBinder.singleton.CoinStackManager.RemoveCoinStack(_currentPathfinder as CoinStack);
 
                         selectedTile.CoinStack = coinStack;
-                        coinStack.Tile = selectedTile;
 
                         GlobalBinder.singleton.MatchChecker.CheckForMatches();
                     }

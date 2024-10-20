@@ -55,7 +55,7 @@ namespace CS3D.TileSystem
         {
             get
             {
-                return CoinStack.Weight;
+                return CoinStack ? CoinStack.Weight : -1;
             }
         }
 
@@ -84,7 +84,7 @@ namespace CS3D.TileSystem
         /// </summary>
         public bool IsOccupied
         {
-            get => _isOccupied;
+            get => CoinStack;
             private set => _isOccupied = value;
         }
 
@@ -123,16 +123,6 @@ namespace CS3D.TileSystem
             GameObject obstaclePrefab = Resources.Load<GameObject>(_tileObstaclePrefabResourceKey);
             GameObject obstacle = Instantiate(obstaclePrefab, transform.position, Quaternion.identity, transform);
             obstacle.name = $"Obstacle_{_tileGridPosition.x}_{_tileGridPosition.y}";
-        }
-
-        /// <summary>
-        /// Sets the occupied state of the tile.
-        /// This method should be used to mark the tile as occupied or not based on gameplay logic.
-        /// </summary>
-        /// <param name="occupied">The new occupied state of the tile.</param>
-        public void SetOccupied(bool occupied)
-        {
-            _isOccupied = occupied;
         }
 
         /// <summary>
@@ -179,7 +169,7 @@ namespace CS3D.TileSystem
 
         public void ControlCoinStack()
         {
-            if (_coinStack.CoinList.Count <= 0)
+            if (Weight <= 0)
             {
                 _coinStack = null;
                 _isReserved = false;
@@ -194,7 +184,6 @@ namespace CS3D.TileSystem
         /// </summary>
         public void EnsureCoinWeightLimit()
         {
-            Debug.Log("EnsureCoinWeightLimit!");
             _coinStack?.CheckAndDestroyTopCoinsIfWeightExceedsLimit();
         }
     }

@@ -59,11 +59,11 @@ namespace CS3D.MatchSystem
         /// <returns>True if a match is found, false otherwise.</returns>
         private bool CheckTileMatches(Tile tile)
         {
-            if (tile == null || !tile.CoinStack) return false;
-
-            Coin coin = tile.CoinStack.GetCoin();
-            if (coin == null) return false;
-
+            if (tile == null || !tile.CoinStack || tile.Weight <= 0)
+            {
+                tile.ControlCoinStack();
+                return false;
+            }
             // Check the four neighboring tiles for a match
             if (CheckNeighbor(tile, Vector2Int.up)) return true;
             if (CheckNeighbor(tile, Vector2Int.down)) return true;
@@ -111,29 +111,41 @@ namespace CS3D.MatchSystem
 
             if (firstIsGreater)
             {
-                int tileCount = neighborTile.Weight;
-                for (int i = 0; i < tileCount; i++)
+                int coinCount = neighborTile.Weight;
+                for (int i = 0; i < coinCount; i++)
                 {
                     matchSequence.AppendCallback(() =>
                     {
                         Coin coin = neighborTile.CoinStack.RemoveCoin();
                         firstTile.CoinStack.AddCoin(coin);
                     });
+
                     matchSequence.AppendInterval(_coinTransferInterval);
                 }
+
+                matchSequence.AppendCallback(() =>
+                {
+                    neighborTile.ControlCoinStack();
+                });
             }
             else
             {
-                int tileCount = firstTile.Weight;
-                for (int i = 0; i < tileCount; i++)
+                int coinCount = firstTile.Weight;
+                for (int i = 0; i < coinCount; i++)
                 {
                     matchSequence.AppendCallback(() =>
                     {
                         Coin coin = firstTile.CoinStack.RemoveCoin();
                         neighborTile.CoinStack.AddCoin(coin);
                     });
+
                     matchSequence.AppendInterval(_coinTransferInterval);
                 }
+
+                matchSequence.AppendCallback(() =>
+                {
+                    firstTile.ControlCoinStack();
+                });
             }
 
             matchSequence.AppendInterval(_matchCheckInterval);

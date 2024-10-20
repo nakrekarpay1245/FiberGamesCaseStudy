@@ -121,7 +121,7 @@ namespace CS3D.CoinSystem
                 return;
             }
 
-            _coinStack1.RemoveAndDestroyCoin();
+            //_coinStack1.RemoveAndDestroyCoin();
         }
 
         /// <summary>
