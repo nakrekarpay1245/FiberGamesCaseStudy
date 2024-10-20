@@ -24,6 +24,10 @@ namespace CS3D.TileSystem
         [Tooltip("Reference to the path visualizer object for this tile.")]
         [SerializeField] private GameObject _pathVisualizer;
 
+        [Header("Obstacle Settings")]
+        [Tooltip("Prefab of the Obstacle to be instantiated at non-placeable positions.")]
+        [SerializeField] private string _tileObstaclePrefabResourceKey = "Tile/TileObstacle";
+
         private Vector2Int _tileGridPosition;
 
         [SerializeField] private CoinStack _coinStack;
@@ -83,6 +87,20 @@ namespace CS3D.TileSystem
         {
             _tileGridPosition = new Vector2Int(x, z);
             SetPlaceable(!isNonPlaceable);
+            if (isNonPlaceable)
+            {
+                InstantiateObstacle();
+            }
+        }
+
+        /// <summary>
+        /// Instantiates an obstacle at the specified position.
+        /// </summary>
+        private void InstantiateObstacle()
+        {
+            GameObject obstaclePrefab = Resources.Load<GameObject>(_tileObstaclePrefabResourceKey);
+            GameObject obstacle = Instantiate(obstaclePrefab, transform.position, Quaternion.identity, transform);
+            obstacle.name = $"Obstacle_{_tileGridPosition.x}_{_tileGridPosition.y}";
         }
 
         /// <summary>

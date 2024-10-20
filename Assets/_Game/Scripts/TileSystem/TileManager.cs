@@ -19,11 +19,7 @@ namespace CS3D.TileSystem
         [SerializeField, Range(2, 20)] private int _gridHeight = 8;
 
         [Tooltip("Prefab of the Tile to be instantiated.")]
-        [SerializeField] private Tile _tilePrefab;
-
-        [Header("Obstacle Settings")]
-        [Tooltip("Prefab of the Obstacle to be instantiated at non-placeable positions.")]
-        [SerializeField] private GameObject _obstaclePrefab;
+        [SerializeField] private string _tilePrefabResourceKey = "Tile/Tile";
 
         [Header("Grid Parent Settings")]
         [Tooltip("Transform to act as the parent for all created tiles.")]
@@ -59,31 +55,27 @@ namespace CS3D.TileSystem
                 for (int z = 0; z < _gridHeight; z++)
                 {
                     Vector3 tilePosition = new Vector3(x - gridOffset.x, 0, z - gridOffset.y) + _tileGridTransform.position;
-                    Tile generatedTile = Instantiate(_tilePrefab, tilePosition, Quaternion.identity, _tileGridTransform);
 
-                    generatedTile.Initialize(x, z, _nonPlaceableTilePositions.Contains(new Vector2(x, z)));
+                    // Load the tile prefab from the Resources folder using the resource key
+                    Tile tilePrefab = Resources.Load<Tile>(_tilePrefabResourceKey);
 
-                    if (generatedTile.IsPlaceable == false)
+                    // Check if the tile prefab is successfully loaded
+                    if (tilePrefab == null)
                     {
-                        InstantiateObstacle(tilePosition, generatedTile.transform, x, z);
+                        Debug.LogError($"Tile prefab not found at path: {_tilePrefabResourceKey}");
+                        return;
                     }
+
+                    // Instantiate the tile prefab at the given position with no rotation
+                    Tile generatedTile = Instantiate(tilePrefab, tilePosition,
+                        Quaternion.identity, _tileGridTransform);
+
+                    // Additional initialization of the tile if necessary
+                    generatedTile?.Initialize(x, z, _nonPlaceableTilePositions.Contains(new Vector2(x, z)));
 
                     _tileGrid[x, z] = generatedTile;
                 }
             }
-        }
-
-        /// <summary>
-        /// Instantiates an obstacle at the specified position.
-        /// </summary>
-        /// <param name="position">The position where the obstacle should be created.</param>
-        /// <param name="parentTransform">The parent transform for the obstacle.</param>
-        /// <param name="x">The x-coordinate of the obstacle's grid position.</param>
-        /// <param name="z">The z-coordinate of the obstacle's grid position.</param>
-        private void InstantiateObstacle(Vector3 position, Transform parentTransform, int x, int z)
-        {
-            GameObject obstacle = Instantiate(_obstaclePrefab, position, Quaternion.identity, parentTransform);
-            obstacle.name = $"Obstacle_{x}_{z}";
         }
 
         /// <summary>

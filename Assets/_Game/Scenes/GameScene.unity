@@ -912,17 +912,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridWidth: 6
   _gridHeight: 7
-  _tilePrefab: {fileID: -8545298525677029888, guid: 1ec13a3dd8747b14f816baf575ee8d7e,
-    type: 3}
-  _obstaclePrefab: {fileID: 6677701785294980071, guid: 6df133cbe7305b04ea5b9326f2f489b2,
-    type: 3}
+  _tilePrefabResourceKey: Tile/Tile
   _tileGridTransform: {fileID: 73056090}
   _nonPlaceableTilePositions:
   - {x: 2, y: 1}
-  - {x: 1, y: 1}
-  - {x: 4, y: 1}
-  - {x: 5, y: 1}
-  - {x: 0, y: 1}
 --- !u!1 &1269307418
 GameObject:
   m_ObjectHideFlags: 0

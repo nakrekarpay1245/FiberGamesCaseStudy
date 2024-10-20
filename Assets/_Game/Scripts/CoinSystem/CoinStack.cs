@@ -40,7 +40,7 @@ namespace CS3D.CoinSystem
 
         [Header("Coin Prefab")]
         [Tooltip("The prefab of the coin to instantiate.")]
-        [SerializeField] private Coin _coinPrefab; // Prefab to instantiate coins
+        [SerializeField] private string _coinPrefabResourceKey = "Coin/Coin";
 
         [SerializeField] private Tile _tile;
         public Tile Tile
@@ -89,10 +89,12 @@ namespace CS3D.CoinSystem
         /// <returns>The created coin instance, or null if creation failed.</returns>
         private Coin CreateCoin(CoinLevel level)
         {
-            if (_coinPrefab != null)
+            Coin coinPrefab = Resources.Load<Coin>(_coinPrefabResourceKey);
+
+            if (coinPrefab != null)
             {
                 // Instantiate the coin prefab
-                Coin coinObject = Instantiate(_coinPrefab, transform);
+                Coin coinObject = Instantiate(coinPrefab, transform);
 
                 if (coinObject != null)
                 {
