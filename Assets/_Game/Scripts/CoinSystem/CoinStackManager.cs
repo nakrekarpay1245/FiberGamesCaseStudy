@@ -25,7 +25,7 @@ namespace CS3D.CoinSystem
         [Tooltip("Distance between each generated coin stack.")]
         [SerializeField][Range(1f, 5f)] private float _horizontalSpace = 2.5f;
 
-        public List<CoinStack> _generatedCoinStackList = new List<CoinStack>();
+        private List<CoinStack> _generatedCoinStackList = new List<CoinStack>();
 
         private int _generatedCoinStackCount = 0; // Track the number of generated coin stacks
 

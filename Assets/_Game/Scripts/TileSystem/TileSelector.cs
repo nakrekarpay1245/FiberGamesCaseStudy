@@ -81,6 +81,10 @@ namespace _Game.InputHandling
 
                         selectedTile.CoinStack = coinStack;
 
+                        _currentPathfinder = null;
+
+                        UpdatePathfinder();
+
                         GlobalBinder.singleton.MatchChecker.CheckForMatches();
                     }
 
@@ -96,14 +100,17 @@ namespace _Game.InputHandling
 
         private void UpdatePathfinder()
         {
-            _currentPathfinder = GlobalBinder.singleton.CoinStackManager.GetCoinStack();
-            if (GlobalBinder.singleton.TileGrid.GetStartTile(_currentPathfinder.transform.position) == null)
+            if (_currentPathfinder == null)
             {
-                GlobalBinder.singleton.LevelManager.FailLevel();
-            }
-            else
-            {
-                Debug.Log("Empty tile is: " + GlobalBinder.singleton.TileGrid.GetStartTile(_currentPathfinder.transform.position));
+                _currentPathfinder = GlobalBinder.singleton.CoinStackManager.GetCoinStack();
+                if (GlobalBinder.singleton.TileGrid.GetStartTile(_currentPathfinder.transform.position) == null)
+                {
+                    GlobalBinder.singleton.LevelManager.FailLevel();
+                }
+                else
+                {
+                    Debug.Log("Empty tile is: " + GlobalBinder.singleton.TileGrid.GetStartTile(_currentPathfinder.transform.position));
+                }
             }
         }
     }
