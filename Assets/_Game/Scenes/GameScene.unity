@@ -134,7 +134,7 @@ GameObject:
   m_Layer: 0
   m_Name: TileGrid
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -573,7 +573,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _requiredScore: 100
   _currentScore: 0
-  _progressBarFillTime: 0.25
   _progressBarFill: {fileID: 866676973}
 --- !u!1 &408464451
 GameObject:
@@ -947,9 +946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0d8cf6e7e66f74db7f40f394432336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinTransferInterval: 0.05
-  _matchProcessingDelay: 0.35
-  _matchCheckInterval: 0.1
 --- !u!4 &1068819219
 Transform:
   m_ObjectHideFlags: 0
@@ -965,6 +961,104 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1681179100}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1094077337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1094077338}
+  - component: {fileID: 1094077339}
+  m_Layer: 0
+  m_Name: CoinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1094077338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094077337}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1681179100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1094077339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094077337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d7e9567a0d6df4daa763327505d451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinPrefabResourceKey: Coin/Coin
+  _poolSize: 250
+--- !u!1 &1141455628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1141455629}
+  - component: {fileID: 1141455630}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1141455629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141455628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1681179100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1141455630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141455628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 574bf0b7d8604c44f9c145410147911b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinScaleChangeDuration: 0.25
+  _coinRemovalInterval: 0.025
+  _coinFlipMovementDuration: 0.25
+  _tileMovementTime: 0.025
+  _coinTransferInterval: 0.05
+  _matchProcessingDelay: 0.35
+  _matchCheckInterval: 0.1
+  _progressBarFillTime: 0.25
 --- !u!1 &1192370260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,12 +1551,13 @@ MonoBehaviour:
   _audioManager: {fileID: 0}
   _particleManager: {fileID: 0}
   _popUpTextManager: {fileID: 816149014}
-  _timeManager: {fileID: 0}
+  _timeManager: {fileID: 1141455630}
   _tileManager: {fileID: 1231929757}
   _pathfinding: {fileID: 1790480834}
   _coinStackManager: {fileID: 325818177}
   _matchChecker: {fileID: 1068819218}
   _progressManager: {fileID: 374809801}
+  _coinManager: {fileID: 1094077339}
 --- !u!1 &1679769726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,6 +1664,8 @@ Transform:
   - {fileID: 325818176}
   - {fileID: 1068819219}
   - {fileID: 374809800}
+  - {fileID: 1094077338}
+  - {fileID: 1141455629}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1790480834 stripped

@@ -10,10 +10,6 @@ namespace CS3D.Pathfinding
 {
     public class Pathfinder : MonoBehaviour
     {
-        [Tooltip("The movement speed of the enemy (time to move between tiles in seconds).")]
-        [Range(0.001f, 0.25f)]
-        [SerializeField] private float _tileMovementTime = 1f;
-
         private List<Tile> _pathTiles = new List<Tile>();
 
         /// <summary>
@@ -86,10 +82,10 @@ namespace CS3D.Pathfinding
                 transform.DOKill();
 
                 // Smoothly move the enemy to the next tile using DOTween
-                transform.DOMove(targetPosition, _tileMovementTime).SetEase(Ease.Linear);
+                transform.DOMove(targetPosition, GlobalBinder.singleton.TimeManager.TileMovementTime).SetEase(Ease.Linear);
 
                 // Wait for the movement to complete before proceeding to the next tile
-                yield return new WaitForSeconds(_tileMovementTime);
+                yield return new WaitForSeconds(GlobalBinder.singleton.TimeManager.TileMovementTime);
             }
         }
 

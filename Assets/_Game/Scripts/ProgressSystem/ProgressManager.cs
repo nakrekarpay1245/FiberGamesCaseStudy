@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using _Game._helpers;
 
 namespace CS3D.ProgressSystem
 {
@@ -17,8 +18,6 @@ namespace CS3D.ProgressSystem
         [Header("Progress Settings")]
         [Tooltip("The current progress score of the player.")]
         [SerializeField] private int _currentScore = 0;
-        [Tooltip("The speed of progress bar fill")]
-        [SerializeField] private float _progressBarFillTime = 0.25f;
 
         [Header("UI Elements")]
         [Tooltip("The UI Image representing the progress bar.")]
@@ -52,7 +51,7 @@ namespace CS3D.ProgressSystem
         private void UpdateProgressBar()
         {
             float fillAmount = (float)_currentScore / _requiredScore;
-            _progressBarFill.DOFillAmount(fillAmount, _progressBarFillTime).SetEase(Ease.OutSine);
+            _progressBarFill.DOFillAmount(fillAmount, GlobalBinder.singleton.TimeManager.ProgressBarFillTime).SetEase(Ease.OutSine);
         }
 
         /// <summary>

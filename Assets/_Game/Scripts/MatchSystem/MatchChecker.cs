@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
 using _Game._helpers;
 using CS3D.CoinSystem;
 using CS3D.TileSystem;
 using DG.Tweening;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 namespace CS3D.MatchSystem
 {
@@ -14,19 +12,6 @@ namespace CS3D.MatchSystem
     /// </summary>
     public class MatchChecker : MonoBehaviour
     {
-        [Header("Match Checker Settings")]
-        [Tooltip("The delay between each coin transfer animation during a match.")]
-        [SerializeField, Range(0.01f, 1f)]
-        private float _coinTransferInterval = 0.05f;
-
-        [Tooltip("The delay before initiating the match processing animation.")]
-        [SerializeField, Range(0.1f, 1f)]
-        private float _matchProcessingDelay = 0.35f;
-
-        [Tooltip("The delay between consecutive match checks to ensure smooth transitions.")]
-        [SerializeField, Range(0.01f, 0.5f)]
-        private float _matchCheckInterval = 0.1f;
-
         /// <summary>
         /// Checks for matches in the entire tile grid and stops if a match is found.
         /// </summary>
@@ -107,7 +92,7 @@ namespace CS3D.MatchSystem
 
             bool firstIsGreater = firstTile.Weight > neighborTile.Weight;
 
-            matchSequence.AppendInterval(_matchProcessingDelay);
+            matchSequence.AppendInterval(GlobalBinder.singleton.TimeManager.MatchProcessingDelay);
 
             if (firstIsGreater)
             {
@@ -120,7 +105,7 @@ namespace CS3D.MatchSystem
                         firstTile.CoinStack.AddCoin(coin);
                     });
 
-                    matchSequence.AppendInterval(_coinTransferInterval);
+                    matchSequence.AppendInterval(GlobalBinder.singleton.TimeManager.CoinTransferInterval);
                 }
 
                 matchSequence.AppendCallback(() =>
@@ -139,7 +124,7 @@ namespace CS3D.MatchSystem
                         neighborTile.CoinStack.AddCoin(coin);
                     });
 
-                    matchSequence.AppendInterval(_coinTransferInterval);
+                    matchSequence.AppendInterval(GlobalBinder.singleton.TimeManager.CoinTransferInterval);
                 }
 
                 matchSequence.AppendCallback(() =>
@@ -148,7 +133,7 @@ namespace CS3D.MatchSystem
                 });
             }
 
-            matchSequence.AppendInterval(_matchCheckInterval);
+            matchSequence.AppendInterval(GlobalBinder.singleton.TimeManager.MatchCheckInterval);
 
             matchSequence.OnComplete(() =>
             {
