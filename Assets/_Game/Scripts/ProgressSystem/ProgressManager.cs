@@ -23,7 +23,7 @@ namespace CS3D.ProgressSystem
         [Tooltip("The UI Image representing the progress bar.")]
         [SerializeField] private Image _progressBarFill;
 
-        private void Awake()
+        private void Start()
         {
             UpdateProgressBar();
         }
@@ -60,6 +60,7 @@ namespace CS3D.ProgressSystem
         private void LevelComplete()
         {
             Debug.Log("Level Complete! You've scored enough points.");
+            GlobalBinder.singleton.LevelManager.CompleteLevel();
             // Trigger win logic or transition to the next level here.
             // Example: Load next level, show victory screen, etc.
         }

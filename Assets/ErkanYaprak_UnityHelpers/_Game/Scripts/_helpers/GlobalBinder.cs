@@ -3,10 +3,12 @@ using _Game._helpers.Particles;
 using _Game._helpers.PopUp;
 using _Game._helpers.TimeManagement;
 using CS3D.CoinSystem;
+using CS3D.LevelSystem;
 using CS3D.MatchSystem;
 using CS3D.Pathfinding;
 using CS3D.ProgressSystem;
 using CS3D.TileSystem;
+using CS3D.UI;
 using UnityEngine;
 
 namespace _Game._helpers
@@ -47,6 +49,12 @@ namespace _Game._helpers
         
         [Tooltip("")]
         [SerializeField] private CoinManager _coinManager;
+
+        [Tooltip("")]
+        [SerializeField] private UIManager _uiManager;
+
+        [Tooltip("")]
+        [SerializeField] private LevelManager _levelManager;
 
         /// <summary>
         /// Provides public access to the AudioManager instance.
@@ -136,6 +144,24 @@ namespace _Game._helpers
         {
             get => _coinManager;
             private set => _coinManager = value;
+        }
+
+        /// <summary>
+        /// Provides public access to the UIManager instance.
+        /// </summary>
+        public UIManager UIManager
+        {
+            get => _uiManager;
+            private set => _uiManager = value;
+        }
+
+        /// <summary>
+        /// Provides public access to the LevelManager instance.
+        /// </summary>
+        public LevelManager LevelManager
+        {
+            get => _levelManager;
+            private set => _levelManager = value;
         }
     }
 }
