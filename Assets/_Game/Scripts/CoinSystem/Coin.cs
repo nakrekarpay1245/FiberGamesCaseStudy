@@ -87,9 +87,12 @@ namespace CS3D.CoinSystem
                 rotationAngleZ = direction.x > 0 ? -360f : 360f;
             }
 
+            float coinFlipDuraitonHalf = GlobalBinder.singleton.TimeManager.CoinFlipMovementDuration / 2;
             // Animate the coin's movement with a flip effect using DOTween
-            transform.DOLocalMove(targetPosition, GlobalBinder.singleton.TimeManager.CoinFlipMovementDuration)
-                .SetEase(Ease.InOutQuad); // Smooth easing for the movement
+            transform.DOLocalMove(targetPosition + Vector3.up, coinFlipDuraitonHalf).OnComplete(() =>
+            {
+                transform.DOLocalMove(targetPosition, coinFlipDuraitonHalf);
+            }).SetEase(Ease.InOutQuad); // Smooth easing for the movement
 
             // Animate the rotation to create a flipping effect while moving
             transform.DORotate(new Vector3(rotationAngleX, 0f, rotationAngleZ),
