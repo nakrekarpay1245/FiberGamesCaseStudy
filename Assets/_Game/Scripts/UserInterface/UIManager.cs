@@ -14,10 +14,10 @@ namespace CS3D.UI
     {
         [Header("Level Management Buttons")]
         [Tooltip("Button used to restart the current level.")]
-        [SerializeField] private Button _restartButton;
+        [SerializeField] private CustomButton _restartButton;
 
         [Tooltip("Button used to progress to the next level.")]
-        [SerializeField] private Button _nextLevelButton;
+        [SerializeField] private CustomButton _nextLevelButton;
 
         [Header("Level Result Menus")]
         [Tooltip("UI panel displayed when the player fails the level.")]
@@ -59,8 +59,8 @@ namespace CS3D.UI
         private void Start()
         {
             // Initialize button listeners
-            _restartButton.onClick.AddListener(RestartLevel);
-            _nextLevelButton.onClick.AddListener(StartNextLevel);
+            _restartButton.onButtonDown.AddListener(RestartLevel);
+            _nextLevelButton.onButtonDown.AddListener(StartNextLevel);
 
             // Hide all UI elements initially
             HideAllUIElements();
@@ -74,7 +74,8 @@ namespace CS3D.UI
         /// </summary>
         private void HideAllUIElements()
         {
-            HideUIElements(_levelFailTitle, _levelCompleteTitle, _currentLevelText.gameObject, _completeEmojiImage, _failEmojiImage, _resultMenu);
+            HideUIElements(_levelFailTitle, _levelCompleteTitle, _currentLevelText.gameObject, _completeEmojiImage,
+                _failEmojiImage, _resultMenu, _restartButton.gameObject, _nextLevelButton.gameObject);
         }
 
         /// <summary>
