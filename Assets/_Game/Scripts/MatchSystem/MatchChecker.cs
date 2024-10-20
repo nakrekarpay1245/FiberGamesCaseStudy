@@ -69,7 +69,7 @@ namespace CS3D.MatchSystem
             Tile neighborTile = GlobalBinder.singleton.TileManager.GetTileAt(neighborPosition.x, neighborPosition.y);
 
             if (neighborTile != null && neighborTile.CoinStack != null &&
-                neighborTile.CoinStack.GetCoin().Level == tile.CoinStack.GetCoin().Level)
+                neighborTile.Level == tile.Level)
             {
                 HandleMatch(tile, neighborTile);
                 return true;
@@ -88,13 +88,14 @@ namespace CS3D.MatchSystem
             Sequence matchSequence = DOTween.Sequence();
 
             Debug.Log($"Match found between {firstTile} and {neighborTile} tiles!");
-            bool firstIsGreater = firstTile.CoinStack.GetCoinsByLevel(firstTile.CoinStack.GetCoin().Level).Count >
-                 neighborTile.CoinStack.GetCoinsByLevel(firstTile.CoinStack.GetCoin().Level).Count;
+
+            bool firstIsGreater = firstTile.Weight > neighborTile.Weight;
+
             matchSequence.AppendInterval(0.35f);
 
             if (firstIsGreater)
             {
-                int tileCount = neighborTile.CoinStack.GetCoinsByLevel(firstTile.CoinStack.GetCoin().Level).Count;
+                int tileCount = neighborTile.Weight;
                 for (int i = 0; i < tileCount; i++)
                 {
                     matchSequence.AppendCallback(() =>
@@ -107,7 +108,7 @@ namespace CS3D.MatchSystem
             }
             else
             {
-                int tileCount = firstTile.CoinStack.GetCoinsByLevel(firstTile.CoinStack.GetCoin().Level).Count;
+                int tileCount = firstTile.Weight;
                 for (int i = 0; i < tileCount; i++)
                 {
                     matchSequence.AppendCallback(() =>

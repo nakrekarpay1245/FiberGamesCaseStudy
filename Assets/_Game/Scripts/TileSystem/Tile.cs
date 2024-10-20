@@ -1,3 +1,4 @@
+using CS3D._Enums;
 using CS3D.CoinSystem;
 using UnityEngine;
 
@@ -35,6 +36,27 @@ namespace CS3D.TileSystem
         {
             get => _coinStack;
             set => _coinStack = value;
+        }
+
+        /// <summary>
+        /// Gets the CoinLevel of the coin at the top of the stack.
+        /// Returns null if the stack is empty.
+        /// </summary>
+        public CoinLevel? Level
+        {
+            get => CoinStack.Level;
+        }
+
+        /// <summary>
+        /// Gets the count of coins in the stack that have the same level as the top coin.
+        /// If the stack is empty, returns 0.
+        /// </summary>
+        public int Weight
+        {
+            get
+            {
+                return CoinStack.Weight;
+            }
         }
 
         /// <summary>

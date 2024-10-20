@@ -46,6 +46,40 @@ namespace CS3D.CoinSystem
         }
 
         /// <summary>
+        /// Gets the CoinLevel of the coin at the top of the stack.
+        /// Returns null if the stack is empty.
+        /// </summary>
+        public CoinLevel? Level
+        {
+            get => _coinList.Count > 0 ? _coinList[_coinList.Count - 1].Level : (CoinLevel?)null;
+        }
+
+        /// <summary>
+        /// Gets the count of coins in the stack that have the same level as the top coin.
+        /// If the stack is empty, returns 0.
+        /// </summary>
+        public int Weight
+        {
+            get
+            {
+                if (_coinList.Count == 0)
+                    return 0;
+
+                CoinLevel topCoinLevel = _coinList[_coinList.Count - 1].Level;
+                int count = 0;
+
+                // Count the number of coins with the same level as the top coin
+                foreach (Coin coin in _coinList)
+                {
+                    if (coin.Level == topCoinLevel)
+                        count++;
+                }
+
+                return count;
+            }
+        }
+
+        /// <summary>
         /// Initializes the coin stack based on the provided configurations.
         /// This method creates the specified number of coins for each coin type.
         /// </summary>
