@@ -139,28 +139,5 @@ namespace CS3D.TileSystem
 
             return neighbors;
         }
-
-
-        /// <summary>
-        /// Draws Gizmos in the Scene view to visualize the tile grid.
-        /// Visualizes placeable tiles in green and non-placeable tiles in red.
-        /// </summary>
-        private void OnDrawGizmos()
-        {
-            if (_gridWidth <= 0 || _gridHeight <= 0 || transform == null) return;
-
-            Vector3 gridOffset = new Vector3((_gridWidth - 1) * 0.5f, 0, (_gridHeight - 1) * 0.5f);
-
-            for (int x = 0; x < _gridWidth; x++)
-            {
-                for (int z = 0; z < _gridHeight; z++)
-                {
-                    Vector3 tilePosition = new Vector3(x - gridOffset.x, 0, z - gridOffset.z) + transform.position;
-                    Gizmos.color = _nonPlaceableTilePositions.Contains(new Vector2(x, z)) ? Color.red : Color.green;
-                    float cubeHeight = _nonPlaceableTilePositions.Contains(new Vector2(x, z)) ? 0.25f : 0.1f;
-                    Gizmos.DrawCube(tilePosition + Vector3.up * (cubeHeight / 2), new Vector3(0.9f, cubeHeight, 0.9f));
-                }
-            }
-        }
     }
 }

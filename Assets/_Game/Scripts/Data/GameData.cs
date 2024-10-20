@@ -29,14 +29,12 @@ namespace CS3D.Data
         {
             get
             {
-                _currentLevelIndex = SaveManager.LoadLevelIndex() % _levelList.Count;
-
-                return _currentLevelIndex;
+                _currentLevelIndex = SaveManager.LoadLevelIndex();
+                return _currentLevelIndex % _levelList.Count;
             }
             set
             {
-                // Ensure the level index is within valid bounds and save the updated index
-                _currentLevelIndex = Mathf.Clamp(value, 0, _levelList.Count - 1);
+                _currentLevelIndex = value;
                 SaveManager.SaveLevelIndex(_currentLevelIndex);
             }
         }

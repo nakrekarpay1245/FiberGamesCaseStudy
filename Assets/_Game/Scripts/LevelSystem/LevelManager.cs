@@ -48,6 +48,7 @@ namespace CS3D.LevelSystem
             // Play completion sound using the audio manager service
             GlobalBinder.singleton.AudioManager.PlaySound(_levelCompleteSoundKey);
             OnLevelComplete?.Invoke(_gameData.CurrentLevelIndex);
+            _gameData.CurrentLevelIndex++;
         }
 
         /// <summary>
