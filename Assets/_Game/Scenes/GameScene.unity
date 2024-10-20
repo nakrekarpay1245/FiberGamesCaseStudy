@@ -785,7 +785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c97b805a5d843846adb92c4167025b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpTextPrefab: {fileID: 359402673818277789, guid: 95f040fc70a1879449d6019475bd4c95,
+  _popUpTextPrefab: {fileID: 359402673818277789, guid: 2d57650fab5e58043aa98092dbca8f34,
     type: 3}
   _poolSize: 10
   _positionRandomizer: 0.1

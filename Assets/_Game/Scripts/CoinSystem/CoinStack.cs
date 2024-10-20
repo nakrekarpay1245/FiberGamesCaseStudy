@@ -24,6 +24,8 @@ namespace CS3D.CoinSystem
         [Tooltip("The maximum weight limit for coins in the stack before triggering removal.")]
         [SerializeField] private int _maxWeightLimit = 10;
 
+        [SerializeField] private Vector3 _popUpTextOffset = new Vector3(0, 1, -1);
+
         [Header("Coin Removal Settings")]
         [SerializeField, Tooltip("The interval (in seconds) between consecutive coin removal actions.")]
         [Range(0.001f, 0.1f)]
@@ -289,6 +291,9 @@ namespace CS3D.CoinSystem
                 score += ((int)Level + 1);
             }
 
+            Vector3 popUpTextPosition = CalculateTargetPosition() + transform.position + _popUpTextOffset;
+            string popUpString = $"+{score}";
+            GlobalBinder.singleton.PopUpTextManager.ShowPopUpText(popUpTextPosition, popUpString);
             GlobalBinder.singleton.ProgressManager.AddScore(score);
             Debug.Log($"Total Score from Top Coins: {score}");
         }
