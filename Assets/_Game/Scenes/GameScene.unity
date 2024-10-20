@@ -168,14 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridWidth: 6
   _gridHeight: 7
-  _nonPlaceableTilePositions:
-  - {x: 0, y: 0}
-  - {x: 1, y: 0}
-  - {x: 2, y: 0}
-  - {x: 3, y: 0}
-  - {x: 4, y: 0}
-  - {x: 5, y: 0}
-  - {x: 6, y: 0}
+  _nonPlaceableTilePositions: []
 --- !u!1 &105872529
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,31 +438,30 @@ MonoBehaviour:
     - CoinLevel: 0
       Count: 1
   - configList:
-    - CoinLevel: 0
+    - CoinLevel: 1
       Count: 1
   - configList:
-    - CoinLevel: 0
+    - CoinLevel: 2
       Count: 1
   - configList:
-    - CoinLevel: 0
+    - CoinLevel: 3
       Count: 1
   - configList:
-    - CoinLevel: 0
+    - CoinLevel: 4
       Count: 1
   - configList:
-    - CoinLevel: 0
+    - CoinLevel: 5
       Count: 1
   - configList:
-    - CoinLevel: 0
+    - CoinLevel: 6
       Count: 1
   - configList:
-    - CoinLevel: 0
+    - CoinLevel: 7
       Count: 1
   _coinStackPrefab: {fileID: 448371544098613818, guid: d84b0384de65dff4e8b4c48101c27a6d,
     type: 3}
   _coinStackPoint: {fileID: 1858009058}
   _horizontalSpace: 2.5
-  _generatedCoinStackList: []
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2773,10 +2765,10 @@ Transform:
   m_Children:
   - {fileID: 1663568062}
   - {fileID: 1231929756}
+  - {fileID: 408464452}
   - {fileID: 1192370261}
   - {fileID: 1790480835}
   - {fileID: 816149013}
-  - {fileID: 408464452}
   - {fileID: 325818176}
   - {fileID: 1068819219}
   - {fileID: 374809800}
