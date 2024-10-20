@@ -26,6 +26,13 @@ namespace _Game.InputHandling
 
         private Pathfinder _currentPathfinder;
 
+        [Header("Effects")]
+        [Header("Audio")]
+        [Tooltip("")]
+        public string _tileMovementSoundKey = "tile_move";
+        [Tooltip("")]
+        public string _tileClickSoundKey = "tile_click";
+
         private void OnEnable()
         {
             // Subscribe to PlayerInput events when this object is enabled
@@ -86,6 +93,8 @@ namespace _Game.InputHandling
                         UpdatePathfinder();
 
                         GlobalBinder.singleton.MatchChecker.CheckForMatches();
+
+                        GlobalBinder.singleton.AudioManager.PlaySound(_tileClickSoundKey);
                     }
 
                     // Match control will be provided after the stack system is written.

@@ -12,6 +12,11 @@ namespace CS3D.Pathfinding
     {
         private List<Tile> _pathTiles = new List<Tile>();
 
+        [Header("Effect")]
+        [Header("Sound")]
+        [Tooltip("")]
+        public string _tileMovementSoundKey = "tile_move";
+
         /// <summary>
         /// Moves the soldier to a specified tile using A* pathfinding.
         /// </summary>
@@ -68,6 +73,8 @@ namespace CS3D.Pathfinding
         private IEnumerator MoveAlongPath(List<Tile> path)
         {
             ReserveTile(path.LastOrDefault());
+
+            GlobalBinder.singleton.AudioManager.PlaySound(_tileMovementSoundKey);
 
             foreach (Tile tile in path)
             {

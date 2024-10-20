@@ -835,6 +835,8 @@ MonoBehaviour:
   _tileLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  _tileMovementSoundKey: tile_move
+  _tileClickSoundKey: tile_click
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1047,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &466924453
 Transform:
   m_ObjectHideFlags: 0
@@ -1082,17 +1084,23 @@ MonoBehaviour:
     Loop: 0
   - Name: tile_move
     _clipArray:
-    - {fileID: 8300000, guid: 01cfa6be02fb13e4ba2f7be953ce9a3d, type: 3}
-    Volume: 0
-    Pitch: 0
+    - {fileID: 8300000, guid: 9823b07656a31584f9b42c6cdfc83a13, type: 3}
+    Volume: 1
+    Pitch: 1
     Loop: 0
-  - Name: coin
+  - Name: coin_flip
     _clipArray:
-    - {fileID: 8300000, guid: f8d50604ec273a24390ec7dfd70ed21c, type: 3}
-    Volume: 0
-    Pitch: 0
+    - {fileID: 8300000, guid: 9be733241851dad42946386d0412b230, type: 3}
+    Volume: 1
+    Pitch: 1
     Loop: 0
-  _maximumAudioCount: 10
+  - Name: coin_collect
+    _clipArray:
+    - {fileID: 8300000, guid: 9be733241851dad42946386d0412b230, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+  _maximumAudioCount: 20
   _masterVolume: 1
   _isAudioSourceMuted: 0
   _soundMixerGroup: {fileID: 0}
