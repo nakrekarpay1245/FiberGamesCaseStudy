@@ -36,19 +36,19 @@ namespace CS3D.TileSystem
         }
 
         /// <summary>
-        /// Finds and returns the closest tile to the specified world position.
-        /// This method calculates the distance from the given position to each tile
-        /// and returns the tile with the shortest distance.
+        /// Finds and returns the closest tile at the specified grid level (y index 0).
+        /// This method calculates the distance from the given position to each tile at y index 0
+        /// and returns the tile with the shortest distance. If no such tile exists, it returns null.
         /// </summary>
         /// <param name="position">The world position to find the closest tile to.</param>
-        /// <returns>The Tile object that is closest to the specified position.</returns>
-        public Tile GetClosestTile(Vector3 position)
+        /// <returns>The Tile object that is closest to the specified position at y index 0, or null if none exist.</returns>
+        public Tile GetStartTile(Vector3 position)
         {
-            // Use LINQ to find the tile with the minimum distance to the specified position
+            // Use LINQ to find the tile with the minimum distance to the specified position at y index 0
             Tile closestTile = _grid.Cast<Tile>()
-                                        .Where(tile => tile != null)
-                                        .OrderBy(tile => Vector3.Distance(tile.transform.position, position))
-                                        .FirstOrDefault();
+                .Where(tile => tile != null && tile.TileGridPosition.y == 0) // Filter for tiles at y index 0
+                .OrderBy(tile => Vector3.Distance(tile.transform.position, position)) // Order by distance
+                .FirstOrDefault(); // Get the closest tile or null if none found
 
             return closestTile;
         }

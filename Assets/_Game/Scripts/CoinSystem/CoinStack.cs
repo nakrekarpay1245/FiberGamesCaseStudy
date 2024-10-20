@@ -82,6 +82,8 @@ namespace CS3D.CoinSystem
             // Iterate through each coin configuration
             foreach (CoinConfiguration config in _coinConfigurations)
             {
+                Debug.Log("Config Count: " + config.Count);
+
                 for (int j = 0; j < config.Count; j++)
                 {
                     // Create a coin of the specified type

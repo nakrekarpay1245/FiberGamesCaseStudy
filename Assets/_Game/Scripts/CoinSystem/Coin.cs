@@ -23,7 +23,10 @@ namespace CS3D.CoinSystem
         [SerializeField] private TextMeshPro _coinLevelText;
 
         [Tooltip("Renderer component of the coin for changing color.")]
-        [SerializeField] private Renderer _coinRenderer;
+        [SerializeField] private MeshRenderer _coinMeshRenderer;
+
+        [Tooltip("Renderer component of the coin for changing color.")]
+        [SerializeField] private TrailRenderer _coinTrailRenderer;
 
         [Header("Coin Levels and Colors")]
         [Tooltip("List of coin levels and their corresponding colors.")]
@@ -56,7 +59,8 @@ namespace CS3D.CoinSystem
         private void Awake()
         {
             _coinLevelText = GetComponentInChildren<TextMeshPro>();
-            _coinRenderer = GetComponentInChildren<Renderer>();
+            _coinMeshRenderer = GetComponentInChildren<MeshRenderer>();
+            _coinTrailRenderer = GetComponentInChildren<TrailRenderer>();
         }
 
         /// <summary>
@@ -75,12 +79,12 @@ namespace CS3D.CoinSystem
             if (Mathf.Abs(direction.z) > Mathf.Abs(direction.x))
             {
                 // Vertical movement
-                rotationAngleX = direction.z > 0 ? 180f : -180f;
+                rotationAngleX = direction.z > 0 ? 360f : -360f;
             }
             else
             {
                 // Horizontal movement
-                rotationAngleZ = direction.x > 0 ? -180f : 180f;
+                rotationAngleZ = direction.x > 0 ? -360f : 360f;
             }
 
             // Animate the coin's movement with a flip effect using DOTween
@@ -103,9 +107,11 @@ namespace CS3D.CoinSystem
 
             // Find the corresponding color for the current coin level and apply it to the renderer
             CoinLevelData data = _coinLevelDataList.Find(item => item.Level == _coinLevel);
-            if (data != null && _coinRenderer != null)
+            if (data != null && _coinMeshRenderer != null && _coinTrailRenderer != null)
             {
-                _coinRenderer.material.color = data.CoinColor;
+                _coinMeshRenderer.material.color = data.CoinColor;
+                _coinTrailRenderer.startColor = data.CoinColor;
+                _coinTrailRenderer.endColor = data.CoinColor;
             }
         }
     }

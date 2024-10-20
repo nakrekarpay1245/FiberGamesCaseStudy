@@ -21,10 +21,6 @@ namespace CS3D.TileSystem
         [Tooltip("Indicates whether this tile is currently reserved by another object.")]
         [SerializeField] private bool _isReserved = false;
 
-        [Header("Path Visualizer")]
-        [Tooltip("Reference to the path visualizer object for this tile.")]
-        [SerializeField] private GameObject _pathVisualizer;
-
         [Header("Obstacle Settings")]
         [Tooltip("Prefab of the Obstacle to be instantiated at non-placeable positions.")]
         [SerializeField] private string _tileObstaclePrefabResourceKey = "Tile/TileObstacle";
@@ -143,28 +139,6 @@ namespace CS3D.TileSystem
         public void SetReserved(bool reserved)
         {
             _isReserved = reserved;
-        }
-
-        /// <summary>
-        /// Makes the path visualizer visible on this tile.
-        /// </summary>
-        public void PathVisible()
-        {
-            if (_pathVisualizer != null)
-            {
-                _pathVisualizer.SetActive(true);
-            }
-        }
-
-        /// <summary>
-        /// Hides the path visualizer on this tile.
-        /// </summary>
-        public void PathHidden()
-        {
-            if (_pathVisualizer != null)
-            {
-                _pathVisualizer.SetActive(false);
-            }
         }
 
         public void ControlCoinStack()

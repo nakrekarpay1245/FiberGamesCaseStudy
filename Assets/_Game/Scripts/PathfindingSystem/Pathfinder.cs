@@ -21,11 +21,6 @@ namespace CS3D.Pathfinding
             bool success = false;
             if (_pathTiles.Count > 0)
             {
-                foreach (var tile in _pathTiles)
-                {
-                    tile.PathHidden();
-                }
-
                 _pathTiles.Clear();
             }
 
@@ -37,7 +32,7 @@ namespace CS3D.Pathfinding
                 return success;
             }
 
-            Tile startTile = GlobalBinder.singleton.TileGrid.GetClosestTile(transform.position);
+            Tile startTile = GlobalBinder.singleton.TileGrid.GetStartTile(transform.position);
             if (startTile == null)
             {
                 Debug.LogWarning("Start tile is invalid.");
@@ -59,7 +54,6 @@ namespace CS3D.Pathfinding
             foreach (var tile in path)
             {
                 _pathTiles.Add(tile);
-                tile.PathVisible();
             }
 
             success = true;
