@@ -1,3 +1,4 @@
+using CS3D.Data;
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,9 @@ namespace CS3D.CoinSystem
     /// </summary>
     public class CoinStackManager : MonoBehaviour
     {
-        [Header("Coin Stack Configuration")]
-        [Tooltip("List of configurations for different coin stacks.")]
-        [SerializeField] private List<CoinStackConfig> _coinStackList = new List<CoinStackConfig>();
+        [Header("Game Data")]
+        [Tooltip("The current game data")]
+        [SerializeField] private GameData _gameData;
 
         [Header("Coin Stack Prefab")]
         [Tooltip("Prefab to instantiate new coin stacks.")]
@@ -42,9 +43,12 @@ namespace CS3D.CoinSystem
         /// </summary>
         private void GenerateAllCoinStacks()
         {
-            for (int i = 0; i < _coinStackList.Count; i++)
+            List<CoinStackConfig> coinStackList = new List<CoinStackConfig>();
+            coinStackList = _gameData.CurrentLevel.LevelConfigurationData.CoinStackList;
+
+            for (int i = 0; i < coinStackList.Count; i++)
             {
-                GenerateCoinStack(i);
+                GenerateCoinStack(i, coinStackList);
             }
         }
 
@@ -52,7 +56,7 @@ namespace CS3D.CoinSystem
         /// Generates a single coin stack at a specified position and configures it.
         /// </summary>
         /// <param name="index">The index of the configuration to use for this coin stack.</param>
-        private void GenerateCoinStack(int index)
+        private void GenerateCoinStack(int index, List<CoinStackConfig> coinStackList)
         {
             // Calculate the position for the new coin stack
             Vector3 coinStackPosition = _coinStackPoint.position + (Vector3.right * (_generatedCoinStackCount * _horizontalSpace));
@@ -61,7 +65,7 @@ namespace CS3D.CoinSystem
             CoinStack generatedCoinStack = Instantiate(_coinStackPrefab, coinStackPosition, Quaternion.identity);
 
             // Retrieve the current configuration
-            CoinStackConfig currentCoinStackConfig = _coinStackList[index];
+            CoinStackConfig currentCoinStackConfig = coinStackList[index];
 
             // Add configurations to the generated coin stack
             foreach (CoinConfiguration coinStackConfig in currentCoinStackConfig.ConfigList)
@@ -107,18 +111,5 @@ namespace CS3D.CoinSystem
                 _generatedCoinStackList[i].transform.DOMove(coinStackPosition, 1);
             }
         }
-    }
-
-    [System.Serializable]
-    public class CoinStackConfig
-    {
-        [Header("Coin Configuration List")]
-        [Tooltip("List of configurations for different coin types in this stack.")]
-        [SerializeField] private List<CoinConfiguration> configList = new List<CoinConfiguration>();
-
-        /// <summary>
-        /// Exposes the list of coin configurations for enumeration.
-        /// </summary>
-        public List<CoinConfiguration> ConfigList => configList;
     }
 }

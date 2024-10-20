@@ -2,8 +2,6 @@ using CS3D.TileSystem;
 using CS3D.Pathfinding;
 using UnityEngine;
 using _Game._helpers;
-using DG.Tweening;
-using TMPro.EditorUtilities;
 using CS3D.CoinSystem;
 
 namespace _Game.InputHandling

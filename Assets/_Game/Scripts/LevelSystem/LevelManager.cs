@@ -1,83 +1,81 @@
-using _Game._helpers;
-using CS3D.Data;
 using UnityEngine;
 using UnityEngine.Events;
+using CS3D.Data;
+using _Game._helpers;
 
 namespace CS3D.LevelSystem
 {
     /// <summary>
     /// Manages the level states, specifically handling level completion and failure.
-    /// It uses Unity Events to allow external components to respond to these events in a modular and decoupled manner.
+    /// Uses Unity Events to trigger external reactions in a modular way.
     /// </summary>
     public class LevelManager : MonoBehaviour
     {
-        [Header("Level Event Settings")]
-        [Tooltip("Unity Event invoked when the level is completed.")]
-        public UnityEvent<int> OnLevelComplete;
-
-        [Tooltip("Unity Event invoked when the level fails.")]
-        public UnityEvent<int> OnLevelFail;
-
-        [Header("Level Settings")]
-        [Tooltip("The current level index.")]
+        [Header("Game Data")]
+        [Tooltip("Reference to the current game data.")]
         [SerializeField] private GameData _gameData;
 
-        private bool _isLevelEnded = false; // Flag to track if the level has already ended
+        [Header("Level Events")]
+        [Tooltip("Event triggered when the level is successfully completed.")]
+        public UnityEvent<int> OnLevelComplete;
 
-        [Header("Effect")]
-        [Header("Sound")]
-        [Tooltip("")]
-        public string _levelCompleteSoundKey = "level_complete";
-        [Tooltip("")]
-        public string _levelFailSoundKey = "level_fail";
+        [Tooltip("Event triggered when the level fails.")]
+        public UnityEvent<int> OnLevelFail;
+
+        [Header("Audio Settings")]
+        [Tooltip("Sound key for level completion.")]
+        [SerializeField] private string _levelCompleteSoundKey = "level_complete";
+
+        [Tooltip("Sound key for level failure.")]
+        [SerializeField] private string _levelFailSoundKey = "level_fail";
+
+        private bool _isLevelEnded; // Flag to track if the level has ended
 
         /// <summary>
-        /// Called to trigger the level completion sequence.
-        /// Executes the completion logic and invokes the Level Complete Unity Event.
+        /// Completes the current level, triggers the appropriate sound, and invokes the level complete event.
         /// </summary>
         public void CompleteLevel()
         {
             if (_isLevelEnded)
             {
-                Debug.LogWarning("Level has already ended. Completion cannot be triggered again.");
+                Debug.LogWarning("Level has already ended. Cannot trigger completion again.");
                 return;
             }
 
+            _isLevelEnded = true;
             Debug.Log("Level Completed");
-            _isLevelEnded = true; // Mark the level as ended
 
+            // Play completion sound using the audio manager service
             GlobalBinder.singleton.AudioManager.PlaySound(_levelCompleteSoundKey);
-
             OnLevelComplete?.Invoke(_gameData.CurrentLevelIndex);
         }
 
         /// <summary>
-        /// Called to trigger the level failure sequence.
-        /// Executes the failure logic and invokes the Level Fail Unity Event.
+        /// Fails the current level, triggers the appropriate sound, and invokes the level fail event.
         /// </summary>
         public void FailLevel()
         {
             if (_isLevelEnded)
             {
-                Debug.LogWarning("Level has already ended. Failure cannot be triggered again.");
+                Debug.LogWarning("Level has already ended. Cannot trigger failure again.");
                 return;
             }
 
+            _isLevelEnded = true;
             Debug.Log("Level Failed");
-            _isLevelEnded = true; // Mark the level as ended
 
+            // Play failure sound using the audio manager service
             GlobalBinder.singleton.AudioManager.PlaySound(_levelFailSoundKey);
-
             OnLevelFail?.Invoke(_gameData.CurrentLevelIndex);
         }
 
         /// <summary>
-        /// Resets the level state to allow re-triggering of level events if necessary.
-        /// This method can be called when restarting or moving to the next level.
+        /// Resets the level state to allow re-triggering of level events.
+        /// Should be called when restarting or moving to the next level.
         /// </summary>
         public void ResetLevelState()
         {
-            _isLevelEnded = false; // Reset the level ended flag
+            _isLevelEnded = false;
             Debug.Log("Level state has been reset.");
         }
     }

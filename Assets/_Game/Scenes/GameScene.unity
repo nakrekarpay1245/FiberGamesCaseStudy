@@ -437,157 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fec14d3700f0c4f882c9683d9cc3d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinStackList:
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 0
-      Count: 7
-  - configList:
-    - CoinLevel: 1
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
-  - configList:
-    - CoinLevel: 2
-      Count: 7
+  _gameData: {fileID: 11400000, guid: 693e168b1b1a8324d992969fa945176e, type: 2}
   _coinStackPrefab: {fileID: 448371544098613818, guid: d84b0384de65dff4e8b4c48101c27a6d,
     type: 3}
   _coinStackPoint: {fileID: 1858009058}
@@ -1909,13 +1759,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26ee06a24962ec4a866ce568e61af35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameData: {fileID: 11400000, guid: 693e168b1b1a8324d992969fa945176e, type: 2}
   OnLevelComplete:
     m_PersistentCalls:
       m_Calls: []
   OnLevelFail:
     m_PersistentCalls:
       m_Calls: []
-  _gameData: {fileID: 11400000, guid: 693e168b1b1a8324d992969fa945176e, type: 2}
   _levelCompleteSoundKey: level_complete
   _levelFailSoundKey: level_fail
 --- !u!1 &1094077337

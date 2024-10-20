@@ -1,4 +1,5 @@
 using _Game._helpers;
+using CS3D.Data;
 using UnityEngine;
 
 namespace CS3D.TileSystem
@@ -10,6 +11,10 @@ namespace CS3D.TileSystem
     /// </summary>
     public class TileManager : MonoBehaviour
     {
+        [Header("Game Data")]
+        [Tooltip("The current game data")]
+        [SerializeField] private GameData _gameData;
+
         [Tooltip("Prefab of the Tile to be instantiated.")]
         [SerializeField] private string _tilePrefabResourceKey = "Tile/Tile";
 
@@ -26,7 +31,7 @@ namespace CS3D.TileSystem
         /// Instantiates tiles and handles the creation of obstacles for non-placeable tiles.
         /// </summary>
         private void GenerateTileGrid()
-        {
+        {            
             int gridWidth = GlobalBinder.singleton.TileGrid.GridWidth;
             int gridHeight = GlobalBinder.singleton.TileGrid.GridHeight;
             Vector3 tileGridPosition = GlobalBinder.singleton.TileGrid.transform.position;
