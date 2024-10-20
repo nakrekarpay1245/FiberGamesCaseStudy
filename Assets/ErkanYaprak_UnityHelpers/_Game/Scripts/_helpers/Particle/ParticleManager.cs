@@ -12,7 +12,7 @@ namespace _Game._helpers.Particles
         [Tooltip("List of particle data configurations.")]
         public List<ParticleData> ParticleDataList = new List<ParticleData>();
 
-        public List<ParticleSystem> ParticleList = new List<ParticleSystem>();
+        private List<ParticleSystem> ParticleList = new List<ParticleSystem>();
 
         private void Awake()
         {

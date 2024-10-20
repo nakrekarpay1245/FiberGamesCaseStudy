@@ -435,29 +435,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _coinStackList:
   - configList:
-    - CoinLevel: 0
-      Count: 1
-  - configList:
-    - CoinLevel: 1
-      Count: 1
+    - CoinLevel: 2
+      Count: 7
   - configList:
     - CoinLevel: 2
-      Count: 1
+      Count: 7
   - configList:
-    - CoinLevel: 3
-      Count: 1
+    - CoinLevel: 2
+      Count: 7
   - configList:
-    - CoinLevel: 4
-      Count: 1
+    - CoinLevel: 2
+      Count: 7
   - configList:
-    - CoinLevel: 5
-      Count: 1
+    - CoinLevel: 2
+      Count: 7
   - configList:
-    - CoinLevel: 6
-      Count: 1
+    - CoinLevel: 2
+      Count: 7
   - configList:
-    - CoinLevel: 7
-      Count: 1
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
   _coinStackPrefab: {fileID: 448371544098613818, guid: d84b0384de65dff4e8b4c48101c27a6d,
     type: 3}
   _coinStackPoint: {fileID: 1858009058}
@@ -1023,6 +1029,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465629997}
   m_CullTransparentMesh: 1
+--- !u!1 &466924452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466924453}
+  - component: {fileID: 466924454}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &466924453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466924452}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1681179100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &466924454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466924452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57f2b24f246dc040968962ec58e6df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioList:
+  - Name: tile_click
+    _clipArray:
+    - {fileID: 8300000, guid: 6c3d142708e52134f9eb39c241124284, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+  - Name: tile_move
+    _clipArray:
+    - {fileID: 8300000, guid: 01cfa6be02fb13e4ba2f7be953ce9a3d, type: 3}
+    Volume: 0
+    Pitch: 0
+    Loop: 0
+  - Name: coin
+    _clipArray:
+    - {fileID: 8300000, guid: f8d50604ec273a24390ec7dfd70ed21c, type: 3}
+    Volume: 0
+    Pitch: 0
+    Loop: 0
+  _maximumAudioCount: 10
+  _masterVolume: 1
+  _isAudioSourceMuted: 0
+  _soundMixerGroup: {fileID: 0}
 --- !u!1 &668702436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,7 +1770,7 @@ MonoBehaviour:
   OnLevelFail:
     m_PersistentCalls:
       m_Calls: []
-  _currentLevelIndex: 1
+  _gameData: {fileID: 11400000, guid: 693e168b1b1a8324d992969fa945176e, type: 2}
 --- !u!1 &1094077337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,6 +2599,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499354542}
   m_CullTransparentMesh: 1
+--- !u!1 &1610931590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1610931591}
+  - component: {fileID: 1610931592}
+  m_Layer: 0
+  m_Name: ParticleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1610931591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610931590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1681179100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1610931592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610931590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6334b2efae431d4439823891dd2d7364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParticleDataList:
+  - ParticleName: tile_click
+    ParticleCount: 3
+    _particleSystemList: []
+  - ParticleName: tile_arrive
+    ParticleCount: 3
+    _particleSystemList: []
+  - ParticleName: coin_collect
+    ParticleCount: 10
+    _particleSystemList: []
 --- !u!1001 &1614862009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2654,7 +2781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1ff28b3a9f2314f9d6fba70489fba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioManager: {fileID: 0}
+  _audioManager: {fileID: 466924454}
   _particleManager: {fileID: 0}
   _popUpTextManager: {fileID: 816149014}
   _timeManager: {fileID: 1141455630}
@@ -2763,19 +2890,21 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 466924453}
+  - {fileID: 1094077338}
+  - {fileID: 325818176}
   - {fileID: 1663568062}
-  - {fileID: 1231929756}
-  - {fileID: 408464452}
   - {fileID: 1192370261}
+  - {fileID: 1086047835}
+  - {fileID: 1068819219}
+  - {fileID: 1610931591}
   - {fileID: 1790480835}
   - {fileID: 816149013}
-  - {fileID: 325818176}
-  - {fileID: 1068819219}
   - {fileID: 374809800}
-  - {fileID: 1094077338}
+  - {fileID: 1231929756}
+  - {fileID: 408464452}
   - {fileID: 1141455629}
   - {fileID: 830781416}
-  - {fileID: 1086047835}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1749853782

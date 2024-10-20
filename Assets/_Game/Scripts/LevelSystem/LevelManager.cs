@@ -1,3 +1,4 @@
+using CS3D.Data;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,7 +19,7 @@ namespace CS3D.LevelSystem
 
         [Header("Level Settings")]
         [Tooltip("The current level index.")]
-        [SerializeField] private int _currentLevelIndex = 1;
+        [SerializeField] private GameData _gameData;
 
         private bool _isLevelEnded = false; // Flag to track if the level has already ended
 
@@ -36,7 +37,7 @@ namespace CS3D.LevelSystem
 
             Debug.Log("Level Completed");
             _isLevelEnded = true; // Mark the level as ended
-            OnLevelComplete?.Invoke(_currentLevelIndex);
+            OnLevelComplete?.Invoke(_gameData.CurrentLevelIndex);
         }
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace CS3D.LevelSystem
 
             Debug.Log("Level Failed");
             _isLevelEnded = true; // Mark the level as ended
-            OnLevelFail?.Invoke(_currentLevelIndex);
+            OnLevelFail?.Invoke(_gameData.CurrentLevelIndex);
         }
 
         /// <summary>

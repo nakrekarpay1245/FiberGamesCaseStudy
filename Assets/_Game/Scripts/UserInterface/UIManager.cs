@@ -127,7 +127,7 @@ namespace CS3D.UI
             ShowUIElementsWithSequentialAnimation(_resultMenu, _levelCompleteTitle, _currentLevelText.gameObject,
                 _completeEmojiImage, _nextLevelButton.gameObject);
 
-            UpdateLevelNumberText(levelNumber);
+            UpdateLevelNumberText(levelNumber + 1);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace CS3D.UI
             ShowUIElementsWithSequentialAnimation(_resultMenu, _levelFailTitle, _currentLevelText.gameObject,
                 _failEmojiImage, _restartButton.gameObject);
 
-            UpdateLevelNumberText(levelNumber);
+            UpdateLevelNumberText(levelNumber + 1);
         }
 
         /// <summary>
