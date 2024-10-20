@@ -103,6 +103,7 @@ namespace CS3D.TileSystem
         /// <param name="isNonPlaceable">Indicates whether the tile is non-placeable.</param>
         public void Initialize(int x, int z, bool isNonPlaceable)
         {
+            name = $"Tile [{x}, {z}]";
             _tileGridPosition = new Vector2Int(x, z);
             SetPlaceable(!isNonPlaceable);
             if (isNonPlaceable)

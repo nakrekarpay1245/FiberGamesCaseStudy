@@ -18,6 +18,12 @@ namespace CS3D.Pathfinding
         /// <returns>A list of tiles representing the path to the target.</returns>
         public List<Tile> FindPath(Tile startTile, Tile targetTile)
         {
+            // If start and target tiles are the same, return the target tile as the path
+            if (startTile == targetTile)
+            {
+                return new List<Tile> { targetTile }; // Return the path containing only the target tile
+            }
+
             // The set of nodes to be evaluated
             List<Tile> openSet = new List<Tile>();
             // The set of nodes already evaluated

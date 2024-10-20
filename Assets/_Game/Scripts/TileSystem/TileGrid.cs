@@ -44,11 +44,53 @@ namespace CS3D.TileSystem
         /// <returns>The Tile object that is closest to the specified position at y index 0, or null if none exist.</returns>
         public Tile GetStartTile(Vector3 position)
         {
-            // Use LINQ to find the tile with the minimum distance to the specified position at y index 0
-            Tile closestTile = _grid.Cast<Tile>()
-                .Where(tile => tile != null && tile.TileGridPosition.y == 0) // Filter for tiles at y index 0
+            // Get all tiles in the grid
+            Tile[] allTiles = _grid.Cast<Tile>().ToArray(); // Get all tiles
+
+            // Filter tiles based on specified criteria
+            var filteredTiles = allTiles
+                .Where(tile => tile != null) // Ensure tile is not null
+                .Where(tile => tile.TileGridPosition.y == 0) // Filter for tiles at y index 0
+                .Where(tile => tile.IsPlaceable) // Filter for tiles that are placeable
+                .Where(tile => !tile.IsOccupied) // Filter for tiles that are not occupied
+                .Where(tile => !tile.IsReserved); // Filter for tiles that are not reserved
+
+            // Find the closest tile
+            Tile closestTile = filteredTiles
                 .OrderBy(tile => Vector3.Distance(tile.transform.position, position)) // Order by distance
                 .FirstOrDefault(); // Get the closest tile or null if none found
+
+            if (closestTile == null)
+            {
+                // Check the filtering criteria and log appropriate messages
+                string reason = "No suitable tile found at y index 0. Reasons: ";
+
+                if (!allTiles.Any(tile => tile != null))
+                {
+                    reason += "No tiles exist.";
+                }
+                else
+                {
+                    bool hasPlaceable = allTiles.Any(tile => tile.TileGridPosition.y == 0 && tile.IsPlaceable);
+                    bool hasOccupied = allTiles.Any(tile => tile.TileGridPosition.y == 0 && !tile.IsOccupied);
+                    bool hasReserved = allTiles.Any(tile => tile.TileGridPosition.y == 0 && !tile.IsReserved);
+
+                    if (!hasPlaceable)
+                    {
+                        reason += "No placeable tiles available.";
+                    }
+                    if (!hasOccupied)
+                    {
+                        reason += "All tiles are occupied.";
+                    }
+                    if (!hasReserved)
+                    {
+                        reason += "All tiles are reserved.";
+                    }
+                }
+
+                Debug.LogWarning(reason);
+            }
 
             return closestTile;
         }
