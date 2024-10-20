@@ -47,8 +47,9 @@ MonoBehaviour:
   _tileMovementTime: 0.02
   _verticalSpacing: 0.2
   _scaleChangeDuration: 0.25
-  CurrentCoinsInStack: []
+  _maxWeightLimit: 10
+  _coinRemovalInterval: 0.025
+  _coinList: []
   _coinConfigurations: []
-  _coinPrefab: {fileID: 3612177684337607079, guid: 7060851377f4cd44aafd51bbc04b85bd,
-    type: 3}
+  _coinPrefabResourceKey: Coin/Coin
   _tile: {fileID: 0}

@@ -14,6 +14,19 @@ namespace CS3D.MatchSystem
     /// </summary>
     public class MatchChecker : MonoBehaviour
     {
+        [Header("Match Checker Settings")]
+        [Tooltip("The delay between each coin transfer animation during a match.")]
+        [SerializeField, Range(0.01f, 1f)]
+        private float _coinTransferInterval = 0.05f;
+
+        [Tooltip("The delay before initiating the match processing animation.")]
+        [SerializeField, Range(0.1f, 1f)]
+        private float _matchProcessingDelay = 0.35f;
+
+        [Tooltip("The delay between consecutive match checks to ensure smooth transitions.")]
+        [SerializeField, Range(0.01f, 0.5f)]
+        private float _matchCheckInterval = 0.1f;
+
         /// <summary>
         /// Checks for matches in the entire tile grid and stops if a match is found.
         /// </summary>
@@ -90,11 +103,11 @@ namespace CS3D.MatchSystem
         {
             Sequence matchSequence = DOTween.Sequence();
 
-            Debug.Log($"Match found between {firstTile} and {neighborTile} tiles!");
+            //Debug.Log($"Match found between {firstTile} and {neighborTile} tiles!");
 
             bool firstIsGreater = firstTile.Weight > neighborTile.Weight;
 
-            matchSequence.AppendInterval(0.35f);
+            matchSequence.AppendInterval(_matchProcessingDelay);
 
             if (firstIsGreater)
             {
@@ -106,7 +119,7 @@ namespace CS3D.MatchSystem
                         Coin coin = neighborTile.CoinStack.RemoveCoin();
                         firstTile.CoinStack.AddCoin(coin);
                     });
-                    matchSequence.AppendInterval(.05f);
+                    matchSequence.AppendInterval(_coinTransferInterval);
                 }
             }
             else
@@ -119,17 +132,16 @@ namespace CS3D.MatchSystem
                         Coin coin = firstTile.CoinStack.RemoveCoin();
                         neighborTile.CoinStack.AddCoin(coin);
                     });
-                    matchSequence.AppendInterval(.05f);
+                    matchSequence.AppendInterval(_coinTransferInterval);
                 }
             }
 
-            matchSequence.AppendInterval(.1f);
+            matchSequence.AppendInterval(_matchCheckInterval);
 
             matchSequence.OnComplete(() =>
             {
                 firstTile.EnsureCoinWeightLimit();
                 neighborTile.EnsureCoinWeightLimit();
-                CheckForMatches();
                 Debug.Log("Match handling completed.");
             });
 

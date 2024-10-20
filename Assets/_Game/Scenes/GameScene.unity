@@ -243,19 +243,8 @@ MonoBehaviour:
       Count: 5
     - CoinLevel: 1
       Count: 5
-    - CoinLevel: 1
-      Count: 5
   - configList:
     - CoinLevel: 0
-      Count: 5
-    - CoinLevel: 1
-      Count: 5
-    - CoinLevel: 1
-      Count: 5
-  - configList:
-    - CoinLevel: 0
-      Count: 5
-    - CoinLevel: 1
       Count: 5
     - CoinLevel: 1
       Count: 5
@@ -264,19 +253,8 @@ MonoBehaviour:
       Count: 5
     - CoinLevel: 1
       Count: 5
-    - CoinLevel: 1
-      Count: 5
   - configList:
     - CoinLevel: 0
-      Count: 5
-    - CoinLevel: 1
-      Count: 5
-    - CoinLevel: 1
-      Count: 5
-  - configList:
-    - CoinLevel: 0
-      Count: 5
-    - CoinLevel: 1
       Count: 5
     - CoinLevel: 1
       Count: 5
@@ -285,6 +263,9 @@ MonoBehaviour:
       Count: 5
     - CoinLevel: 1
       Count: 5
+  - configList:
+    - CoinLevel: 0
+      Count: 5
     - CoinLevel: 1
       Count: 5
   - configList:
@@ -292,12 +273,13 @@ MonoBehaviour:
       Count: 5
     - CoinLevel: 1
       Count: 5
-    - CoinLevel: 1
-      Count: 5
   - configList:
     - CoinLevel: 0
       Count: 5
     - CoinLevel: 1
+      Count: 5
+  - configList:
+    - CoinLevel: 0
       Count: 5
     - CoinLevel: 1
       Count: 5
@@ -740,6 +722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0d8cf6e7e66f74db7f40f394432336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coinTransferInterval: 0.05
+  _matchProcessingDelay: 0.35
+  _matchCheckInterval: 0.1
 --- !u!4 &1068819219
 Transform:
   m_ObjectHideFlags: 0

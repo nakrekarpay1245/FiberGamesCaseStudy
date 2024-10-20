@@ -4,6 +4,7 @@ using DG.Tweening;
 using CS3D._Enums;
 using CS3D.Pathfinding;
 using CS3D.TileSystem;
+using _Game._helpers;
 
 namespace CS3D.CoinSystem
 {
@@ -22,6 +23,11 @@ namespace CS3D.CoinSystem
 
         [Tooltip("The maximum weight limit for coins in the stack before triggering removal.")]
         [SerializeField] private int _maxWeightLimit = 10;
+
+        [Header("Coin Removal Settings")]
+        [SerializeField, Tooltip("The interval (in seconds) between consecutive coin removal actions.")]
+        [Range(0.001f, 0.1f)]
+        private float _coinRemovalInterval = 0.025f;
 
         [Header("Coin Stack")]
         [Tooltip("The list that holds the coins.")]
@@ -184,7 +190,6 @@ namespace CS3D.CoinSystem
         /// <returns>The coin that was removed from the list, or null if the list is empty.</returns>
         public Coin RemoveCoin()
         {
-            Debug.Log("RemoveCoin!");
             if (_coinList.Count == 0)
             {
                 Debug.LogWarning("Coin list is empty. No coin to remove.");
@@ -242,15 +247,49 @@ namespace CS3D.CoinSystem
         /// </summary>
         public void CheckAndDestroyTopCoinsIfWeightExceedsLimit()
         {
-            Debug.Log("CheckAndDestroyTopCoinsIfWeightExceedsLimit");
             int weightTileCount = Weight;
+
+            // Only proceed if the weight exceeds the limit
             if (weightTileCount >= _maxWeightLimit)
             {
+                LogScoreForTopCoins();
+                Sequence coinRemovalSequence = DOTween.Sequence();
+
+                // Append the coin removal actions to the sequence
                 for (int i = 0; i < weightTileCount; i++)
                 {
-                    RemoveAndDestroyCoin();
+                    coinRemovalSequence.AppendCallback(() => RemoveAndDestroyCoin());
+                    // Add an interval (adjust as necessary)
+                    coinRemovalSequence.AppendInterval(_coinRemovalInterval); // Adjust the interval as needed
                 }
+
+                // Optionally, you can add a completion callback to handle any logic after removal
+                coinRemovalSequence.OnComplete(() =>
+                {
+                    GlobalBinder.singleton.MatchChecker.CheckForMatches();
+                    Debug.Log("Coin removal complete. Weight is now below the limit.");
+                });
             }
+        }
+
+        /// <summary>
+        /// Logs the score based on the levels of the top coins in the stack.
+        /// </summary>
+        private void LogScoreForTopCoins()
+        {
+            Debug.Log("Calculating score for top coins...");
+
+            // Calculate score based on the levels of the top coins
+            int score = 0;
+            int weightTileCount = Weight;
+
+            // Append the coin removal actions to the sequence
+            for (int i = 0; i < weightTileCount; i++)
+            {
+                score += ((int)Level + 1);
+            }
+
+            Debug.Log($"Total Score from Top Coins: {score}");
         }
     }
 }

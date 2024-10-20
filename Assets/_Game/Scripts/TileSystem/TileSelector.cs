@@ -86,7 +86,7 @@ namespace _Game.InputHandling
                     }
 
                     // Match control will be provided after the stack system is written.
-                    Debug.Log($"Tile selected: {selectedTile.name}");
+                    //Debug.Log($"Tile selected: {selectedTile.name}");
                 }
                 else
                 {
