@@ -2039,6 +2039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2012d7686abe8d941845e28ae71f94e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameData: {fileID: 11400000, guid: 693e168b1b1a8324d992969fa945176e, type: 2}
   _tilePrefabResourceKey: Tile/Tile
 --- !u!1 &1255340006
 GameObject:
