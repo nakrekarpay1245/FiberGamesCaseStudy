@@ -235,54 +235,72 @@ MonoBehaviour:
   _coinStackList:
   - configList:
     - CoinLevel: 0
-      Count: 10
+      Count: 5
     - CoinLevel: 1
-      Count: 10
+      Count: 5
   - configList:
     - CoinLevel: 0
-      Count: 10
+      Count: 5
     - CoinLevel: 1
-      Count: 1
+      Count: 5
+    - CoinLevel: 1
+      Count: 5
   - configList:
     - CoinLevel: 0
-      Count: 10
+      Count: 5
     - CoinLevel: 1
-      Count: 10
+      Count: 5
+    - CoinLevel: 1
+      Count: 5
   - configList:
     - CoinLevel: 0
-      Count: 10
+      Count: 5
     - CoinLevel: 1
-      Count: 10
+      Count: 5
+    - CoinLevel: 1
+      Count: 5
   - configList:
     - CoinLevel: 0
-      Count: 10
+      Count: 5
     - CoinLevel: 1
-      Count: 10
+      Count: 5
+    - CoinLevel: 1
+      Count: 5
   - configList:
     - CoinLevel: 0
-      Count: 10
+      Count: 5
     - CoinLevel: 1
-      Count: 10
+      Count: 5
+    - CoinLevel: 1
+      Count: 5
   - configList:
     - CoinLevel: 0
-      Count: 10
+      Count: 5
     - CoinLevel: 1
-      Count: 10
+      Count: 5
+    - CoinLevel: 1
+      Count: 5
   - configList:
     - CoinLevel: 0
-      Count: 10
+      Count: 5
     - CoinLevel: 1
-      Count: 10
+      Count: 5
+    - CoinLevel: 1
+      Count: 5
   - configList:
     - CoinLevel: 0
-      Count: 10
+      Count: 5
     - CoinLevel: 1
-      Count: 10
+      Count: 5
+    - CoinLevel: 1
+      Count: 5
   - configList:
     - CoinLevel: 0
-      Count: 10
+      Count: 5
     - CoinLevel: 1
-      Count: 10
+      Count: 5
+    - CoinLevel: 1
+      Count: 5
   _coinStackPrefab: {fileID: 448371544098613818, guid: d84b0384de65dff4e8b4c48101c27a6d,
     type: 3}
   _coinStackPoint: {fileID: 1858009058}

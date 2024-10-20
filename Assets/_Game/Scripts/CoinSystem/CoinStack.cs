@@ -20,6 +20,9 @@ namespace CS3D.CoinSystem
         [Tooltip("Duration for the scale change animation when removing coins.")]
         [SerializeField, Range(0.1f, 1f)] private float _scaleChangeDuration = 0.25f;
 
+        [Tooltip("The maximum weight limit for coins in the stack before triggering removal.")]
+        [SerializeField] private int _maxWeightLimit = 10;
+
         [Header("Coin Stack")]
         [Tooltip("The list that holds the coins.")]
         [SerializeField] private List<Coin> _coinList = new List<Coin>();
@@ -65,13 +68,12 @@ namespace CS3D.CoinSystem
                 if (_coinList.Count == 0)
                     return 0;
 
-                CoinLevel topCoinLevel = _coinList[_coinList.Count - 1].Level;
                 int count = 0;
 
                 // Count the number of coins with the same level as the top coin
                 foreach (Coin coin in _coinList)
                 {
-                    if (coin.Level == topCoinLevel)
+                    if (coin.Level == Level)
                         count++;
                 }
 
@@ -182,6 +184,7 @@ namespace CS3D.CoinSystem
         /// <returns>The coin that was removed from the list, or null if the list is empty.</returns>
         public Coin RemoveCoin()
         {
+            Debug.Log("RemoveCoin!");
             if (_coinList.Count == 0)
             {
                 Debug.LogWarning("Coin list is empty. No coin to remove.");
@@ -234,23 +237,20 @@ namespace CS3D.CoinSystem
         }
 
         /// <summary>
-        /// Finds and returns a list of coins in the list that match the specified coin level.
+        /// Checks if the Weight of the coin stack is greater than or equal to 10.
+        /// If true, removes and destroys the coins from the top of the stack until the Weight is less than 10.
         /// </summary>
-        /// <param name="level">The coin level to search for in the list.</param>
-        /// <returns>A list of coins that have the specified level.</returns>
-        public List<Coin> GetCoinsByLevel(CoinLevel level)
+        public void CheckAndDestroyTopCoinsIfWeightExceedsLimit()
         {
-            List<Coin> matchingCoins = new List<Coin>();
-
-            foreach (Coin coin in _coinList)
+            Debug.Log("CheckAndDestroyTopCoinsIfWeightExceedsLimit");
+            int weightTileCount = Weight;
+            if (weightTileCount >= _maxWeightLimit)
             {
-                if (coin.Level == level)
+                for (int i = 0; i < weightTileCount; i++)
                 {
-                    matchingCoins.Add(coin);
+                    RemoveAndDestroyCoin();
                 }
             }
-
-            return matchingCoins;
         }
     }
 }

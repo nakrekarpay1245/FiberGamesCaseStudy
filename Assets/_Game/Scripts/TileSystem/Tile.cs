@@ -186,5 +186,16 @@ namespace CS3D.TileSystem
                 _isOccupied = false;
             }
         }
+
+        /// <summary>
+        /// Checks if the coin stack's weight exceeds the specified limit.
+        /// If the weight is greater than or equal to the defined threshold, 
+        /// it removes and destroys coins from the top of the stack until the weight falls below the limit.
+        /// </summary>
+        public void EnsureCoinWeightLimit()
+        {
+            Debug.Log("EnsureCoinWeightLimit!");
+            _coinStack?.CheckAndDestroyTopCoinsIfWeightExceedsLimit();
+        }
     }
 }

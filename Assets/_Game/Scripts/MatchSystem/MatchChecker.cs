@@ -4,6 +4,7 @@ using _Game._helpers;
 using CS3D.CoinSystem;
 using CS3D.TileSystem;
 using DG.Tweening;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 namespace CS3D.MatchSystem
 {
@@ -16,7 +17,7 @@ namespace CS3D.MatchSystem
         /// <summary>
         /// Checks for matches in the entire tile grid and stops if a match is found.
         /// </summary>
-        public void CheckForMatches()
+        public bool CheckForMatches()
         {
             Tile[,] tileGrid = GlobalBinder.singleton.TileManager.TileGrid;
             int rows = tileGrid.GetLength(0);
@@ -30,10 +31,12 @@ namespace CS3D.MatchSystem
                     if (CheckTileMatches(tileGrid[x, y]))
                     {
                         Debug.Log("Match found, stopping further checks.");
-                        return;
+                        return true;
                     }
                 }
             }
+
+            return false;
         }
 
         /// <summary>
@@ -120,13 +123,41 @@ namespace CS3D.MatchSystem
                 }
             }
 
+            matchSequence.AppendInterval(.1f);
+
             matchSequence.OnComplete(() =>
             {
-                firstTile.ControlCoinStack();
-                neighborTile.ControlCoinStack();
+                firstTile.EnsureCoinWeightLimit();
+                neighborTile.EnsureCoinWeightLimit();
                 CheckForMatches();
+                Debug.Log("Match handling completed.");
             });
-            // TODO: Implement match handling logic such as removing coins or triggering effects.
+
+            // Append the individual match sequence to the global match checking sequence
+            DOTween.Sequence().Append(matchSequence);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Keypad0))
+            {
+                TileControl();
+            }
+        }
+
+        private void TileControl()
+        {
+            Tile[,] tileGrid = GlobalBinder.singleton.TileManager.TileGrid;
+            int rows = tileGrid.GetLength(0);
+            int cols = tileGrid.GetLength(1);
+
+            for (int x = 0; x < rows; x++)
+            {
+                for (int y = 0; y < cols; y++)
+                {
+                    tileGrid[x, y].EnsureCoinWeightLimit();
+                }
+            }
         }
     }
 }
