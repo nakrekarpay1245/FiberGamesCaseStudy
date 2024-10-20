@@ -37,7 +37,7 @@ namespace CS3D.Pathfinding
                 return success;
             }
 
-            Tile startTile = GlobalBinder.singleton.TileManager.GetClosestTile(transform.position);
+            Tile startTile = GlobalBinder.singleton.TileGrid.GetClosestTile(transform.position);
             if (startTile == null)
             {
                 Debug.LogWarning("Start tile is invalid.");

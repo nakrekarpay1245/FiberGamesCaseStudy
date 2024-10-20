@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 73056090}
+  - component: {fileID: 73056091}
   m_Layer: 0
   m_Name: TileGrid
   m_TagString: Untagged
@@ -147,12 +148,27 @@ Transform:
   m_GameObject: {fileID: 73056089}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &73056091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73056089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63e1634f26b7054bba022a7847cb1c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gridWidth: 8
+  _gridHeight: 8
+  _nonPlaceableTilePositions: []
 --- !u!1 &105872529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1980,12 +1996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2012d7686abe8d941845e28ae71f94e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 6
-  _gridHeight: 7
   _tilePrefabResourceKey: Tile/Tile
-  _tileGridTransform: {fileID: 73056090}
-  _nonPlaceableTilePositions:
-  - {x: 2, y: 1}
 --- !u!1 &1255340006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2693,6 +2704,7 @@ MonoBehaviour:
   _popUpTextManager: {fileID: 816149014}
   _timeManager: {fileID: 1141455630}
   _tileManager: {fileID: 1231929757}
+  _tileGrid: {fileID: 73056091}
   _pathfinding: {fileID: 1790480834}
   _coinStackManager: {fileID: 325818177}
   _matchChecker: {fileID: 1068819218}

@@ -49,7 +49,7 @@ namespace CS3D.Pathfinding
                 closedSet.Add(currentTile);
 
                 // Evaluate neighbors
-                foreach (Tile neighbor in GlobalBinder.singleton.TileManager.GetNeighbors(currentTile))
+                foreach (Tile neighbor in GlobalBinder.singleton.TileGrid.GetNeighbors(currentTile))
                 {
                     if (closedSet.Contains(neighbor) || neighbor.IsOccupied || !neighbor.IsPlaceable || neighbor.IsReserved)
                     {

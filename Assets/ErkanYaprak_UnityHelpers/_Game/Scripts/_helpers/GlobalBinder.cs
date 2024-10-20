@@ -32,8 +32,8 @@ namespace _Game._helpers
         [Tooltip("Handles time management including countdowns, timers, and related functions.")]
         [SerializeField] private TimeManager _timeManager;
 
-        [Tooltip("Manages tile operations and behaviors.")]
-        [SerializeField] private TileManager _tileManager;
+        [Tooltip("")]
+        [SerializeField] private TileGrid _tileGrid;
 
         [Tooltip("Handles pathfinding operations for navigating the grid.")]
         [SerializeField] private Pathfinding _pathfinding;
@@ -46,7 +46,7 @@ namespace _Game._helpers
 
         [Tooltip("")]
         [SerializeField] private ProgressManager _progressManager;
-        
+
         [Tooltip("")]
         [SerializeField] private CoinManager _coinManager;
 
@@ -93,12 +93,12 @@ namespace _Game._helpers
         }
 
         /// <summary>
-        /// Provides public access to the TileManager instance.
+        /// Provides public access to the TileGrid instance.
         /// </summary>
-        public TileManager TileManager
+        public TileGrid TileGrid
         {
-            get => _tileManager;
-            private set => _tileManager = value;
+            get => _tileGrid;
+            private set => _tileGrid = value;
         }
 
         /// <summary>

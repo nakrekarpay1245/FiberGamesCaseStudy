@@ -17,7 +17,7 @@ namespace CS3D.MatchSystem
         /// </summary>
         public bool CheckForMatches()
         {
-            Tile[,] tileGrid = GlobalBinder.singleton.TileManager.TileGrid;
+            Tile[,] tileGrid = GlobalBinder.singleton.TileGrid.Grid;
             int rows = tileGrid.GetLength(0);
             int cols = tileGrid.GetLength(1);
 
@@ -67,7 +67,7 @@ namespace CS3D.MatchSystem
         private bool CheckNeighbor(Tile tile, Vector2Int direction)
         {
             Vector2Int neighborPosition = tile.TileGridPosition + direction;
-            Tile neighborTile = GlobalBinder.singleton.TileManager.GetTileAt(neighborPosition.x, neighborPosition.y);
+            Tile neighborTile = GlobalBinder.singleton.TileGrid.GetTileAt(neighborPosition.x, neighborPosition.y);
 
             if (neighborTile != null && neighborTile.CoinStack != null &&
                 neighborTile.Level == tile.Level)
