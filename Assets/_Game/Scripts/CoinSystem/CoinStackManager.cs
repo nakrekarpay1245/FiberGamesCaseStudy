@@ -24,7 +24,7 @@ namespace CS3D.CoinSystem
 
         [Header("Horizontal Spacing")]
         [Tooltip("Distance between each generated coin stack.")]
-        [SerializeField][Range(1f, 5f)] private float _horizontalSpace = 2.5f;
+        [SerializeField][Range(1f, 5f)] private float _verticalSpace = 2.5f;
 
         private List<CoinStack> _generatedCoinStackList = new List<CoinStack>();
 
@@ -43,6 +43,8 @@ namespace CS3D.CoinSystem
         /// </summary>
         private void GenerateAllCoinStacks()
         {
+            _generatedCoinStackCount = 0;
+
             List<CoinStackConfig> coinStackList = new List<CoinStackConfig>();
             coinStackList = _gameData.CurrentLevel.LevelConfigurationData.CoinStackList;
 
@@ -59,7 +61,7 @@ namespace CS3D.CoinSystem
         private void GenerateCoinStack(int index, List<CoinStackConfig> coinStackList)
         {
             // Calculate the position for the new coin stack
-            Vector3 coinStackPosition = _coinStackPoint.position + (Vector3.right * (_generatedCoinStackCount * _horizontalSpace));
+            Vector3 coinStackPosition = _coinStackPoint.position + (Vector3.back * (_generatedCoinStackCount * _verticalSpace));
 
             // Instantiate the coin stack prefab at the calculated position
             CoinStack generatedCoinStack = Instantiate(_coinStackPrefab, coinStackPosition, Quaternion.identity);
@@ -88,7 +90,11 @@ namespace CS3D.CoinSystem
         /// <returns>The first coin stack, or null if there are no stacks left.</returns>
         public CoinStack GetCoinStack()
         {
-            if (_generatedCoinStackCount <= 0) return null;
+            if (_generatedCoinStackList.Count <= 0)
+            {
+                Debug.Log("RegenerateCoinStack!");
+                GenerateAllCoinStacks();
+            }
 
             CoinStack coinStackToReturn = _generatedCoinStackList[0]; // Get the first coin stack
             return coinStackToReturn; // Return the retrieved stack
@@ -107,7 +113,7 @@ namespace CS3D.CoinSystem
         {
             for (int i = 0; i < _generatedCoinStackList.Count; i++)
             {
-                Vector3 coinStackPosition = _coinStackPoint.position + (Vector3.right * (i * _horizontalSpace));
+                Vector3 coinStackPosition = _coinStackPoint.position + (Vector3.back * (i * _verticalSpace));
                 _generatedCoinStackList[i].transform.DOMove(coinStackPosition, 1);
             }
         }

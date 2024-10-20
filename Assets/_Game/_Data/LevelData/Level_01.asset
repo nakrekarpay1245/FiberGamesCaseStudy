@@ -16,179 +16,39 @@ MonoBehaviour:
     _coinStackList:
     - configList:
       - CoinLevel: 0
-        Count: 5
+        Count: 1
       - CoinLevel: 1
-        Count: 5
+        Count: 1
       - CoinLevel: 2
-        Count: 5
+        Count: 1
     - configList:
       - CoinLevel: 0
-        Count: 5
+        Count: 1
       - CoinLevel: 1
-        Count: 5
+        Count: 1
       - CoinLevel: 2
-        Count: 5
+        Count: 1
     - configList:
       - CoinLevel: 0
-        Count: 5
+        Count: 1
       - CoinLevel: 1
-        Count: 5
+        Count: 1
       - CoinLevel: 2
-        Count: 5
+        Count: 1
     - configList:
       - CoinLevel: 0
-        Count: 5
+        Count: 1
       - CoinLevel: 1
-        Count: 5
+        Count: 1
       - CoinLevel: 2
-        Count: 5
+        Count: 1
     - configList:
       - CoinLevel: 0
-        Count: 5
+        Count: 1
       - CoinLevel: 1
-        Count: 5
+        Count: 1
       - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
-    - configList:
-      - CoinLevel: 0
-        Count: 5
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 2
-        Count: 5
+        Count: 1
   _levelTileMapData:
     _gridWidth: 6
     _gridHeight: 7
