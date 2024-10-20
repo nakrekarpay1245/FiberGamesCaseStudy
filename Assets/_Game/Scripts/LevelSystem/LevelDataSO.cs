@@ -19,6 +19,10 @@ namespace CS3D.LevelSystem
         [Tooltip("Contains settings related to the tile grid and non-placeable tiles.")]
         [SerializeField] private LevelTileMapData _levelTileMapData;
 
+        [Header("Level Completion Settings")]
+        [Tooltip("The score required to complete the level.")]
+        [SerializeField] private int _requiredScore = 100;
+
         /// <summary>
         /// Gets the level configuration data for this level.
         /// </summary>
@@ -35,6 +39,12 @@ namespace CS3D.LevelSystem
         {
             get => _levelTileMapData;
             private set => _levelTileMapData = value;
+        }
+
+        public int RequiredScore
+        {
+            get => _requiredScore;
+            private set => _requiredScore = value;
         }
     }
 

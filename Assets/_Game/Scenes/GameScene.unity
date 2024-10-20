@@ -623,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f209e4d5bd743984e9e3046e9171b778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _requiredScore: 100
+  _gameData: {fileID: 11400000, guid: 693e168b1b1a8324d992969fa945176e, type: 2}
   _currentScore: 0
   _progressBarFill: {fileID: 866676973}
 --- !u!1 &393863472

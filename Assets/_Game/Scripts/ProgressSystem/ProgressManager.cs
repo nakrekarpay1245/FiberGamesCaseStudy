@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using _Game._helpers;
+using CS3D.Data;
 
 namespace CS3D.ProgressSystem
 {
@@ -11,9 +12,9 @@ namespace CS3D.ProgressSystem
     /// </summary>
     public class ProgressManager : MonoBehaviour
     {
-        [Header("Level Settings")]
-        [Tooltip("The score required to complete the level.")]
-        [SerializeField] private int _requiredScore = 100;
+        [Header("Game Data")]
+        [Tooltip("Reference to the current game data.")]
+        [SerializeField] private GameData _gameData;
 
         [Header("Progress Settings")]
         [Tooltip("The current progress score of the player.")]
@@ -38,7 +39,7 @@ namespace CS3D.ProgressSystem
             _currentScore += scoreToAdd;
             UpdateProgressBar();
 
-            if (_currentScore >= _requiredScore)
+            if (_currentScore >= _gameData.CurrentLevel.RequiredScore)
             {
                 LevelComplete();
             }
@@ -50,7 +51,7 @@ namespace CS3D.ProgressSystem
         /// </summary>
         private void UpdateProgressBar()
         {
-            float fillAmount = (float)_currentScore / _requiredScore;
+            float fillAmount = (float)_currentScore / _gameData.CurrentLevel.RequiredScore;
             _progressBarFill.DOFillAmount(fillAmount, GlobalBinder.singleton.TimeManager.ProgressBarFillTime).SetEase(Ease.OutSine);
         }
 
