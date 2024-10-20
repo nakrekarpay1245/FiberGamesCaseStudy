@@ -215,7 +215,7 @@ namespace CS3D.CoinSystem
                 // Destroy the coin object after scaling down
                 GlobalBinder.singleton.CoinManager.DeactivateCoin(coin);
                 GlobalBinder.singleton.AudioManager.PlaySound(_coinCollectSoundKey);
-                GlobalBinder.singleton.ParticleManager.PlayParticleAtPoint(_coinCollectSoundKey, coin.transform.position);
+                GlobalBinder.singleton.ParticleManager.PlayParticleAtPoint(_coinCollectParticleKey, coin.transform.position);
             });
         }
 

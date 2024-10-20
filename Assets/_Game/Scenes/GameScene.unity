@@ -468,6 +468,126 @@ MonoBehaviour:
   - configList:
     - CoinLevel: 2
       Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
+  - configList:
+    - CoinLevel: 2
+      Count: 7
   _coinStackPrefab: {fileID: 448371544098613818, guid: d84b0384de65dff4e8b4c48101c27a6d,
     type: 3}
   _coinStackPoint: {fileID: 1858009058}
@@ -1117,7 +1237,7 @@ MonoBehaviour:
     Volume: 1
     Pitch: 1
     Loop: 0
-  _maximumAudioCount: 20
+  _maximumAudioCount: 25
   _masterVolume: 1
   _isAudioSourceMuted: 0
   _soundMixerGroup: {fileID: 0}
@@ -2642,7 +2762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1610931591
 Transform:
   m_ObjectHideFlags: 0
@@ -2671,15 +2791,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleDataList:
-  - ParticleName: tile_click
-    ParticleCount: 3
-    _particleSystemList: []
-  - ParticleName: tile_arrive
-    ParticleCount: 3
-    _particleSystemList: []
   - ParticleName: coin_collect
-    ParticleCount: 10
-    _particleSystemList: []
+    ParticleCount: 50
+    _particleSystemList:
+    - {fileID: 3891973445508218817, guid: d48a5d001e393c44482c523bdd4aad86, type: 3}
 --- !u!1001 &1614862009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2809,7 +2924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioManager: {fileID: 466924454}
-  _particleManager: {fileID: 0}
+  _particleManager: {fileID: 1610931592}
   _popUpTextManager: {fileID: 816149014}
   _timeManager: {fileID: 1141455630}
   _tileGrid: {fileID: 73056091}

@@ -15,7 +15,7 @@ namespace _Game._helpers.Audios
         private List<Audio> _audioList = new List<Audio>();
 
         [Tooltip("Maximum number of AudioSource components to manage.")]
-        [SerializeField, Range(1, 20)]
+        [SerializeField, Range(1, 50)]
         private int _maximumAudioCount = 10;
 
         [Tooltip("Master volume for all audio.")]
