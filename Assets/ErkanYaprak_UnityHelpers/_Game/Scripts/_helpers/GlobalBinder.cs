@@ -5,6 +5,7 @@ using _Game._helpers.TimeManagement;
 using CS3D.CoinSystem;
 using CS3D.MatchSystem;
 using CS3D.Pathfinding;
+using CS3D.ProgressSystem;
 using CS3D.TileSystem;
 using UnityEngine;
 
@@ -40,6 +41,9 @@ namespace _Game._helpers
 
         [Tooltip("")]
         [SerializeField] private MatchChecker _matchChecker;
+
+        [Tooltip("")]
+        [SerializeField] private ProgressManager _progressManager;
 
         /// <summary>
         /// Provides public access to the AudioManager instance.
@@ -96,7 +100,7 @@ namespace _Game._helpers
         }
 
         /// <summary>
-        /// Provides public access to the Pathfinder instance.
+        /// Provides public access to the CoinStackManager instance.
         /// </summary>
         public CoinStackManager CoinStackManager
         {
@@ -105,12 +109,21 @@ namespace _Game._helpers
         }
 
         /// <summary>
-        /// Provides public access to the Pathfinder instance.
+        /// Provides public access to the MatchChecker instance.
         /// </summary>
         public MatchChecker MatchChecker
         {
             get => _matchChecker;
             private set => _matchChecker = value;
+        }
+
+        /// <summary>
+        /// Provides public access to the ProgressManager instance.
+        /// </summary>
+        public ProgressManager ProgressManager
+        {
+            get => _progressManager;
+            private set => _progressManager = value;
         }
     }
 }

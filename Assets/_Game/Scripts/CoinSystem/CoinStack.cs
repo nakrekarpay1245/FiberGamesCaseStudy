@@ -289,6 +289,7 @@ namespace CS3D.CoinSystem
                 score += ((int)Level + 1);
             }
 
+            GlobalBinder.singleton.ProgressManager.AddScore(score);
             Debug.Log($"Total Score from Top Coins: {score}");
         }
     }
