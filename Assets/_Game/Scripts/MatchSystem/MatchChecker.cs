@@ -152,36 +152,16 @@ namespace CS3D.MatchSystem
 
             matchSequence.OnComplete(() =>
             {
-                firstTile.EnsureCoinWeightLimit();
-                neighborTile.EnsureCoinWeightLimit();
+                if (!CheckForMatches())
+                {
+                    firstTile.EnsureCoinWeightLimit();
+                    neighborTile.EnsureCoinWeightLimit();
+                }
                 Debug.Log("Match handling completed.");
             });
 
             // Append the individual match sequence to the global match checking sequence
             DOTween.Sequence().Append(matchSequence);
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Keypad0))
-            {
-                TileControl();
-            }
-        }
-
-        private void TileControl()
-        {
-            Tile[,] tileGrid = GlobalBinder.singleton.TileManager.TileGrid;
-            int rows = tileGrid.GetLength(0);
-            int cols = tileGrid.GetLength(1);
-
-            for (int x = 0; x < rows; x++)
-            {
-                for (int y = 0; y < cols; y++)
-                {
-                    tileGrid[x, y].EnsureCoinWeightLimit();
-                }
-            }
         }
     }
 }
