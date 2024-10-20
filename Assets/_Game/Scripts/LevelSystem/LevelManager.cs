@@ -16,6 +16,9 @@ namespace CS3D.LevelSystem
         [SerializeField] private GameData _gameData;
 
         [Header("Level Events")]
+        [Tooltip("Event triggered when the level is started.")]
+        public UnityEvent OnLevelStart;
+
         [Tooltip("Event triggered when the level is successfully completed.")]
         public UnityEvent<int> OnLevelComplete;
 
@@ -30,6 +33,17 @@ namespace CS3D.LevelSystem
         [SerializeField] private string _levelFailSoundKey = "level_fail";
 
         private bool _isLevelEnded; // Flag to track if the level has ended
+
+        private void Start()
+        {
+            Invoke(nameof(StartLevel), 0.1f);
+        }
+
+        public void StartLevel()
+        {
+            _isLevelEnded = false;
+            OnLevelStart?.Invoke();
+        }
 
         /// <summary>
         /// Completes the current level, triggers the appropriate sound, and invokes the level complete event.

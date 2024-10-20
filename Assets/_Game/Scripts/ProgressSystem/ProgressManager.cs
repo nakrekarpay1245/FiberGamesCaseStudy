@@ -26,6 +26,12 @@ namespace CS3D.ProgressSystem
 
         private void Start()
         {
+            GlobalBinder.singleton.LevelManager.OnLevelStart.AddListener(Initialize);
+        }
+
+        public void Initialize()
+        {
+            _currentScore = 0;
             UpdateProgressBar();
         }
 

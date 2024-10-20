@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using _Game._helpers;
+using CS3D.LevelSystem;
 
 namespace CS3D.UI
 {
@@ -57,6 +58,11 @@ namespace CS3D.UI
         [SerializeField, Range(0f, 1f)] private float _animationDelay = 0.2f;
 
         private void Start()
+        {
+            GlobalBinder.singleton.LevelManager.OnLevelStart.AddListener(Initialize);
+        }
+
+        public void Initialize()
         {
             // Initialize button listeners
             _restartButton.onButtonDown.AddListener(RestartLevel);
@@ -121,6 +127,7 @@ namespace CS3D.UI
         /// <param name="levelNumber">The number of the level that was completed.</param>
         public void ShowLevelCompleteUI(int levelNumber)
         {
+            Debug.Log("ShowLevelCompleteUI!");
             HideAllUIElements();
 
             // Show relevant UI elements for level completion with staggered animation
@@ -164,8 +171,7 @@ namespace CS3D.UI
         private void RestartLevel()
         {
             Debug.Log("Restarting Level...");
-            // Implementation for restarting the level goes here (e.g., reload the scene).
-            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GlobalBinder.singleton.LevelManager.StartLevel();
         }
 
         /// <summary>
@@ -174,7 +180,7 @@ namespace CS3D.UI
         private void StartNextLevel()
         {
             Debug.Log("Starting Next Level...");
-            // Implementation for starting the next level goes here (e.g., load the next scene or level data).
+            GlobalBinder.singleton.LevelManager.StartLevel();
         }
     }
 }

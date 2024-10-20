@@ -6,6 +6,7 @@ using CS3D.Pathfinding;
 using CS3D.TileSystem;
 using _Game._helpers;
 using _Game._helpers.TimeManagement;
+using System.Linq;
 
 namespace CS3D.CoinSystem
 {
@@ -78,6 +79,16 @@ namespace CS3D.CoinSystem
 
                 return count;
             }
+        }
+
+        private void Start()
+        {
+            GlobalBinder.singleton.LevelManager.OnLevelStart.AddListener(DestroyHimself);
+        }
+
+        private void DestroyHimself()
+        {
+            Destroy(gameObject);
         }
 
         /// <summary>

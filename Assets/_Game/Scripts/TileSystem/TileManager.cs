@@ -3,6 +3,7 @@ using CS3D.Data;
 using CS3D.TileSystem;
 using System;
 using _Game._helpers;
+using UnityEditor;
 
 namespace CS3D.TileSystem
 {
@@ -22,10 +23,12 @@ namespace CS3D.TileSystem
 
         private Tile[,] _tileGrid; // Internal representation of the tile grid
 
-        /// <summary>
-        /// Initializes the tile grid when the game starts.
-        /// </summary>
         private void Start()
+        {
+            GlobalBinder.singleton.LevelManager.OnLevelStart.AddListener(Initialize);
+        }
+
+        public void Initialize()
         {
             GenerateTileGrid();
         }

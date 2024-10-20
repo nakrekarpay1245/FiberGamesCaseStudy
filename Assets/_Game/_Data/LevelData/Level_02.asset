@@ -15,78 +15,78 @@ MonoBehaviour:
   _levelConfigurationData:
     _coinStackList:
     - configList:
-      - CoinLevel: 0
-        Count: 4
       - CoinLevel: 1
         Count: 4
       - CoinLevel: 2
+        Count: 4
+      - CoinLevel: 3
         Count: 4
     - configList:
-      - CoinLevel: 0
-        Count: 4
       - CoinLevel: 1
         Count: 4
       - CoinLevel: 2
+        Count: 4
+      - CoinLevel: 3
         Count: 4
     - configList:
-      - CoinLevel: 0
-        Count: 4
       - CoinLevel: 1
         Count: 4
       - CoinLevel: 2
+        Count: 4
+      - CoinLevel: 3
         Count: 4
     - configList:
-      - CoinLevel: 0
-        Count: 4
       - CoinLevel: 1
         Count: 4
       - CoinLevel: 2
+        Count: 4
+      - CoinLevel: 3
         Count: 4
     - configList:
-      - CoinLevel: 0
-        Count: 4
       - CoinLevel: 1
         Count: 4
       - CoinLevel: 2
+        Count: 4
+      - CoinLevel: 3
         Count: 4
     - configList:
-      - CoinLevel: 0
-        Count: 4
       - CoinLevel: 1
         Count: 4
       - CoinLevel: 2
+        Count: 4
+      - CoinLevel: 3
         Count: 4
     - configList:
-      - CoinLevel: 0
-        Count: 4
       - CoinLevel: 1
         Count: 4
       - CoinLevel: 2
+        Count: 4
+      - CoinLevel: 3
         Count: 4
     - configList:
-      - CoinLevel: 0
-        Count: 4
       - CoinLevel: 1
         Count: 4
       - CoinLevel: 2
+        Count: 4
+      - CoinLevel: 3
         Count: 4
     - configList:
-      - CoinLevel: 0
-        Count: 4
       - CoinLevel: 1
         Count: 4
       - CoinLevel: 2
+        Count: 4
+      - CoinLevel: 3
         Count: 4
     - configList:
-      - CoinLevel: 0
-        Count: 4
       - CoinLevel: 1
         Count: 4
       - CoinLevel: 2
+        Count: 4
+      - CoinLevel: 3
         Count: 4
   _levelTileMapData:
     _gridWidth: 6
     _gridHeight: 7
     _nonPlaceableTilePositions:
-    - {x: 1, y: 0}
+    - {x: 3, y: 1}
   _requiredScore: 25

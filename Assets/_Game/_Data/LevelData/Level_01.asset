@@ -88,5 +88,5 @@ MonoBehaviour:
     _gridWidth: 6
     _gridHeight: 7
     _nonPlaceableTilePositions:
-    - {x: 1, y: 0}
+    - {x: 0, y: 0}
   _requiredScore: 25

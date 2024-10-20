@@ -56,6 +56,9 @@ public class CoinManager : MonoBehaviour
     {
         Coin coin = _coinPool.GetObject();
         coin.transform.parent = parent;
+        coin.transform.localScale = Vector3.one;
+        coin.transform.rotation = Quaternion.identity;
+        coin.gameObject.SetActive(true);
         return coin;
     }
 

@@ -1,3 +1,4 @@
+using _Game._helpers;
 using CS3D.Data;
 using DG.Tweening;
 using System.Collections.Generic;
@@ -30,11 +31,15 @@ namespace CS3D.CoinSystem
 
         private int _generatedCoinStackCount = 0; // Track the number of generated coin stacks
 
-        /// <summary>
-        /// Initializes the coin stacks based on the predefined configurations.
-        /// </summary>
         private void Start()
         {
+            GlobalBinder.singleton.LevelManager.OnLevelStart.AddListener(Initialize);
+        }
+
+        public void Initialize()
+        {
+            _generatedCoinStackList.Clear();
+            _generatedCoinStackCount = 0;
             GenerateAllCoinStacks();
         }
 
