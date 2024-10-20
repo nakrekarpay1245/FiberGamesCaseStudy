@@ -13,6 +13,8 @@ namespace CS3D.TileSystem
         [Tooltip("Prefab of the Tile to be instantiated.")]
         [SerializeField] private string _tilePrefabResourceKey = "Tile/Tile";
 
+        public Texture2D TileMapDataImage;
+
         /// <summary>
         /// Initializes the tile grid when the game starts.
         /// </summary>
@@ -27,8 +29,9 @@ namespace CS3D.TileSystem
         /// </summary>
         private void GenerateTileGrid()
         {
-            int gridWidth = GlobalBinder.singleton.TileGrid.GridWidth;
-            int gridHeight = GlobalBinder.singleton.TileGrid.GridHeight;
+            TileMapData tileMapData = ImageToTileMapData.GenerateLevel(TileMapDataImage);
+            int gridWidth = tileMapData.GridWidth;
+            int gridHeight = tileMapData.GridHeight;
             Vector3 tileGridPosition = GlobalBinder.singleton.TileGrid.transform.position;
 
             Vector2 gridOffset = new Vector2((gridWidth - 1) * 0.5f, (gridHeight - 1) * 0.5f);
@@ -37,6 +40,7 @@ namespace CS3D.TileSystem
             {
                 for (int z = 0; z < gridHeight; z++)
                 {
+                    Debug.Log("Tile generate");
                     Vector3 tilePosition = new Vector3(x - gridOffset.x, 0, z - gridOffset.y) +
                         tileGridPosition;
 
@@ -55,8 +59,8 @@ namespace CS3D.TileSystem
                         Quaternion.identity, GlobalBinder.singleton.TileGrid.transform);
 
                     // Additional initialization of the tile if necessary
-                    generatedTile?.Initialize(x, z, 
-                        GlobalBinder.singleton.TileGrid.NonPlaceableTilePositions.Contains(new Vector2(x, z)));
+                    generatedTile?.Initialize(x, z,
+                        tileMapData.NonPlaceableTilePositions.Contains(new Vector2(x, z)));
 
                     GlobalBinder.singleton.TileGrid.AddTile(x, z, generatedTile);
                 }

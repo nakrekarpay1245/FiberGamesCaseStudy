@@ -2190,6 +2190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tilePrefabResourceKey: Tile/Tile
+  TileMapDataImage: {fileID: 2800000, guid: 7d3b0b55fcc891e4383b1995243533ee, type: 3}
 --- !u!1 &1255340006
 GameObject:
   m_ObjectHideFlags: 0
