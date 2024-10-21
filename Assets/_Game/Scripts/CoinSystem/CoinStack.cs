@@ -229,12 +229,15 @@ namespace CS3D.CoinSystem
         /// <param name="coin">The coin to be scaled down and destroyed.</param>
         private void ScaleAndDestroyCoin(Coin coin)
         {
-            coin.transform.DOScale(Vector3.zero, GlobalBinder.singleton.TimeManager.CoinScaleChangeDuration).OnComplete(() =>
+            coin.transform.DOScale(Vector3.one * 1.25f, GlobalBinder.singleton.TimeManager.CoinScaleChangeDuration / 2).OnComplete(() =>
             {
-                // Destroy the coin object after scaling down
-                GlobalBinder.singleton.CoinManager.DeactivateCoin(coin);
-                GlobalBinder.singleton.AudioManager.PlaySound(_coinCollectSoundKey);
-                GlobalBinder.singleton.ParticleManager.PlayParticleAtPoint(_coinCollectParticleKey, coin.transform.position);
+                coin.transform.DOScale(Vector3.zero, GlobalBinder.singleton.TimeManager.CoinScaleChangeDuration / 2).OnComplete(() =>
+                {
+                    // Destroy the coin object after scaling down
+                    GlobalBinder.singleton.CoinManager.DeactivateCoin(coin);
+                    GlobalBinder.singleton.AudioManager.PlaySound(_coinCollectSoundKey);
+                    GlobalBinder.singleton.ParticleManager.PlayParticleAtPoint(_coinCollectParticleKey, coin.transform.position);
+                });
             });
         }
 
