@@ -33,4 +33,4 @@ Bu proje, 48 saatlik süre içinde Fiber Games için geliştirilen bir Hibrid-Ca
 Oyuncular, coin stack'lerini grid üzerindeki tile'lara gönderir. Hedef tile'daki coin stack'i, komşu tile'lardaki stack'lerle birleştirerek puan kazanılır. Her merge işlemi, progress bar'ı doldurur.
 
 ## İletişim
-Herhangi bir sorunuz veya geri bildiriminiz varsa, bana email@example.com adresinden ulaşabilirsiniz.
+Herhangi bir sorunuz veya geri bildiriminiz varsa, bana rknyprk79@gmail.com adresinden ulaşabilirsiniz.
