@@ -7,6 +7,7 @@ using CS3D.TileSystem;
 using _Game._helpers;
 using _Game._helpers.TimeManagement;
 using System.Linq;
+using System;
 
 namespace CS3D.CoinSystem
 {
@@ -95,6 +96,7 @@ namespace CS3D.CoinSystem
                 RemoveAndDestroyCoin();
             }
 
+            GlobalBinder.singleton.InputHandler.UnlockInput();
             //Debug.Log("CoinStack: Destroying game object.");
             Destroy(gameObject);
         }
@@ -140,7 +142,6 @@ namespace CS3D.CoinSystem
                 Coin coin = GlobalBinder.singleton.CoinManager.GetCoin(transform.position, transform, level);
                 if (coin != null)
                 {
-                    //coin.Level = level; // Set the current level to the coin
                     return coin;
                 }
             }
@@ -268,9 +269,49 @@ namespace CS3D.CoinSystem
                 // Optionally, you can add a completion callback to handle any logic after removal
                 coinRemovalSequence.OnComplete(() =>
                 {
+                    CreateAndAddHigherLevelCoin();
+
                     GlobalBinder.singleton.MatchChecker.CheckForMatches();
                     //Debug.Log("Coin removal complete. Weight is now below the limit.");
                 });
+            }
+        }
+
+        /// <summary>
+        /// Creates a new coin of the next level and adds it to the corresponding higher level Tile's CoinStack.
+        /// </summary>
+        private void CreateAndAddHigherLevelCoin()
+        {
+            if (Level.HasValue)
+            {
+                int higherLevel = (int)Level + 1; // Determine the next level
+                Tile higherLevelTile = GlobalBinder.singleton.TileGrid.GetTileWithLevel(higherLevel);
+
+                if (higherLevelTile != null)
+                {
+                    // Create a new coin at the target position
+                    Vector3 targetPosition = CalculateTargetPosition();
+                    Coin newCoin = GlobalBinder.singleton.CoinManager.GetCoin(targetPosition, higherLevelTile.CoinStack.transform, (CoinLevel)higherLevel);
+
+                    if (newCoin != null)
+                    {
+                        // Add the new coin to the higher level tile's coin stack
+                        higherLevelTile.CoinStack.AddCoin(newCoin);
+                        Debug.Log("Successfully added a new coin of the higher level to the tile.");
+                    }
+                    else
+                    {
+                        Debug.LogError($"Failed to create a new coin for level: {higherLevel}");
+                    }
+                }
+                else
+                {
+                    Debug.LogError($"No higher level tile found for level: {higherLevel}");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Cannot create a higher level coin because the current level is null.");
             }
         }
 
@@ -291,6 +332,8 @@ namespace CS3D.CoinSystem
 
             string popUpString = $"+{score}";
             Vector3 popUpTextPosition = CalculateTargetPosition() + transform.position + _popUpTextOffset;
+            int level = (int)Level;
+
             GlobalBinder.singleton.PopUpTextManager.ShowPopUpText(popUpTextPosition, popUpString);
 
             GlobalBinder.singleton.ProgressManager.AddScore(score);

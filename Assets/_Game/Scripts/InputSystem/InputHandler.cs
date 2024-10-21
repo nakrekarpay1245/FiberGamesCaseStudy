@@ -1,3 +1,5 @@
+using _Game._helpers;
+using CS3D.LevelSystem;
 using UnityEngine;
 
 namespace _Game.InputHandling
@@ -16,6 +18,16 @@ namespace _Game.InputHandling
 
         private bool _inputLocked; // Flag to indicate whether input is currently locked
 
+        private void Start()
+        {
+            GlobalBinder.singleton.LevelManager.OnLevelStart.AddListener(Initialize);
+        }
+
+        public void Initialize()
+        {
+            UnlockInput();
+        }
+
         private void Update()
         {
             if (!_inputLocked) // Check if input is not locked before processing
@@ -31,6 +43,7 @@ namespace _Game.InputHandling
         /// </summary>
         public void LockInput()
         {
+            Debug.Log("LockInput!");
             _inputLocked = true; // Set the input locked flag to true
         }
 
@@ -40,6 +53,7 @@ namespace _Game.InputHandling
         /// </summary>
         public void UnlockInput()
         {
+            Debug.Log("UnlockInput!");
             _inputLocked = false; // Set the input locked flag to false
         }
 

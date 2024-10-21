@@ -19,9 +19,9 @@ namespace CS3D.CoinSystem
         [Tooltip("The coin prefab to instantiate when adding new coins to the stack.")]
         [SerializeField] private GameObject _coinPrefab;
 
-        [Header("Add Coin Settings")]
-        [Tooltip("The level of the coin to add to the stack.")]
-        [SerializeField] private CoinLevel _coinLevelToAdd = CoinLevel.Level1;
+        //[Header("Add Coin Settings")]
+        //[Tooltip("The level of the coin to add to the stack.")]
+        //[SerializeField] private CoinLevel _coinLevelToAdd = CoinLevel.Level1;
 
         private void Update()
         {

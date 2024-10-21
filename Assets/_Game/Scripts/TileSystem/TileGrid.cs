@@ -1,4 +1,5 @@
 using _Game._helpers;
+using CS3D._Enums;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -187,6 +188,16 @@ namespace CS3D.TileSystem
         private bool IsWithinGridBounds(int x, int y)
         {
             return x >= 0 && x < _gridWidth && y >= 0 && y < _gridHeight;
+        }
+
+        /// <summary>
+        /// Retrieves a tile from the grid that matches the specified level.
+        /// </summary>
+        /// <param name="level">The level to check for in the tiles.</param>
+        /// <returns>The Tile object matching the specified level, or null if none exist.</returns>
+        public Tile GetTileWithLevel(int level)
+        {
+            return _grid.Cast<Tile>().FirstOrDefault(tile => tile.Level == (CoinLevel)level);
         }
     }
 }
