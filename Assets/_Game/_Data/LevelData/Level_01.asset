@@ -16,77 +16,15 @@ MonoBehaviour:
     _coinStackList:
     - configList:
       - CoinLevel: 0
-        Count: 4
-      - CoinLevel: 1
-        Count: 4
-      - CoinLevel: 2
-        Count: 4
+        Count: 5
     - configList:
       - CoinLevel: 0
-        Count: 4
-      - CoinLevel: 1
-        Count: 4
-      - CoinLevel: 2
-        Count: 4
+        Count: 5
     - configList:
       - CoinLevel: 0
-        Count: 4
-      - CoinLevel: 1
-        Count: 4
-      - CoinLevel: 2
-        Count: 4
-    - configList:
-      - CoinLevel: 0
-        Count: 4
-      - CoinLevel: 1
-        Count: 4
-      - CoinLevel: 2
-        Count: 4
-    - configList:
-      - CoinLevel: 0
-        Count: 4
-      - CoinLevel: 1
-        Count: 4
-      - CoinLevel: 2
-        Count: 4
-    - configList:
-      - CoinLevel: 0
-        Count: 4
-      - CoinLevel: 1
-        Count: 4
-      - CoinLevel: 2
-        Count: 4
-    - configList:
-      - CoinLevel: 0
-        Count: 4
-      - CoinLevel: 1
-        Count: 4
-      - CoinLevel: 2
-        Count: 4
-    - configList:
-      - CoinLevel: 0
-        Count: 4
-      - CoinLevel: 1
-        Count: 4
-      - CoinLevel: 2
-        Count: 4
-    - configList:
-      - CoinLevel: 0
-        Count: 4
-      - CoinLevel: 1
-        Count: 4
-      - CoinLevel: 2
-        Count: 4
-    - configList:
-      - CoinLevel: 0
-        Count: 4
-      - CoinLevel: 1
-        Count: 4
-      - CoinLevel: 2
-        Count: 4
+        Count: 5
   _levelTileMapData:
     _gridWidth: 6
     _gridHeight: 7
-    _nonPlaceableTilePositions:
-    - {x: 0, y: 0}
-  _requiredScore: 25
+    _nonPlaceableTilePositions: []
+  _requiredScore: 15

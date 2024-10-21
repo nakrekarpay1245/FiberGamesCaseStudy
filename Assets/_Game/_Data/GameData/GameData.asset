@@ -15,4 +15,7 @@ MonoBehaviour:
   _levelList:
   - {fileID: 11400000, guid: 6b67cc40c66e95c47947766221622272, type: 2}
   - {fileID: 11400000, guid: 3e7a3fc594239ba41b9973ae7ae6bc49, type: 2}
-  _currentLevelIndex: 2
+  - {fileID: 11400000, guid: e52b2c42503d0f548a3933a7fb22e36f, type: 2}
+  - {fileID: 11400000, guid: 1c6e983996d46ff46b622889fb49536f, type: 2}
+  - {fileID: 11400000, guid: dce8fcc4a9860694793b7efa23b1f145, type: 2}
+  _currentLevelIndex: 5

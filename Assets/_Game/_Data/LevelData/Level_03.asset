@@ -10,38 +10,52 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81a67caf55c7f654c84acf28f88b7b36, type: 3}
-  m_Name: Level_02
+  m_Name: Level_03
   m_EditorClassIdentifier: 
   _levelConfigurationData:
     _coinStackList:
     - configList:
-      - CoinLevel: 0
-        Count: 5
-    - configList:
-      - CoinLevel: 1
-        Count: 5
-    - configList:
-      - CoinLevel: 1
-        Count: 5
-      - CoinLevel: 0
-        Count: 5
-    - configList:
-      - CoinLevel: 0
+      - CoinLevel: 2
         Count: 5
       - CoinLevel: 1
         Count: 5
     - configList:
-      - CoinLevel: 0
-        Count: 5
+      - CoinLevel: 2
+        Count: 3
+    - configList:
+      - CoinLevel: 2
+        Count: 7
       - CoinLevel: 1
         Count: 5
     - configList:
       - CoinLevel: 1
+        Count: 7
+    - configList:
+      - CoinLevel: 3
+        Count: 8
+    - configList:
+      - CoinLevel: 4
+        Count: 2
+    - configList:
+      - CoinLevel: 2
         Count: 5
-      - CoinLevel: 0
+      - CoinLevel: 1
+        Count: 7
+    - configList:
+      - CoinLevel: 1
+        Count: 3
+    - configList:
+      - CoinLevel: 1
+        Count: 2
+      - CoinLevel: 2
+        Count: 8
+    - configList:
+      - CoinLevel: 2
         Count: 5
   _levelTileMapData:
     _gridWidth: 6
     _gridHeight: 7
-    _nonPlaceableTilePositions: []
+    _nonPlaceableTilePositions:
+    - {x: 2, y: 2}
+    - {x: 3, y: 2}
   _requiredScore: 25
