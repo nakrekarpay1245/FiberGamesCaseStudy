@@ -51,6 +51,11 @@ namespace _Game._helpers.TimeManagement
         [SerializeField] private float _progressBarFillTime = 0.25f;
         public float ProgressBarFillTime { get => _progressBarFillTime; set => _progressBarFillTime = value; }
 
+        [Header("Transition Settings")]
+        [Tooltip("The time of scnee transiiton")]
+        [SerializeField] private float _sceneTransitionTime = 0.25f;
+        public float SceneTransitionTime { get => _sceneTransitionTime; set => _sceneTransitionTime = value; }
+
         /// <summary>
         /// Sets the time scale, controlling the flow of time in the game.
         /// </summary>

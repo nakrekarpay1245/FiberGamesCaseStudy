@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using CS3D.Data;
 using _Game._helpers;
+using DG.Tweening;
+using MaskTransitions;
 
 namespace CS3D.LevelSystem
 {
@@ -37,19 +39,35 @@ namespace CS3D.LevelSystem
 
         private void Start()
         {
-            Invoke(nameof(StartLevel), 0.1f);
+            Invoke(nameof(StartLevel), 0.01f);
         }
 
         public void StartLevel()
         {
-            if (!_isLevelStarted)
+            Sequence sequence = DOTween.Sequence();
+
+            // Play the start transition
+            sequence.AppendCallback(() => TransitionManager.Instance.PlayStartHalfTransition(GlobalBinder.singleton.TimeManager.SceneTransitionTime / 3, 0f));
+
+            sequence.AppendInterval(GlobalBinder.singleton.TimeManager.SceneTransitionTime / 3);
+
+            sequence.AppendCallback(() =>
             {
-                _isLevelStarted = true;
-                _isLevelEnded = false;
-                OnLevelStart?.Invoke();
-                //temp
-                //Debug.Log("StartLevel!");
-            }
+                if (!_isLevelStarted)
+                {
+                    _isLevelStarted = true;
+                    _isLevelEnded = false;
+                    OnLevelStart?.Invoke();
+                    //temp
+                    //Debug.Log("StartLevel!");
+                }
+            });
+
+            // Wait for 1 second before loading the scene
+            sequence.AppendInterval(GlobalBinder.singleton.TimeManager.SceneTransitionTime * 2 / 3);
+
+            // Play the end transition
+            sequence.AppendCallback(() => TransitionManager.Instance.PlayEndHalfTransition(GlobalBinder.singleton.TimeManager.SceneTransitionTime * 2 / 3, 0f));
         }
 
         /// <summary>
