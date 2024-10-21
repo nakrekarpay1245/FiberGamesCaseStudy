@@ -25,16 +25,21 @@ namespace CS3D.MatchSystem
             {
                 for (int y = 0; y < cols; y++)
                 {
-                    // If a match is found, break out of both loops
-                    if (CheckTileMatches(tileGrid[x, y]))
+                    Tile tile = tileGrid[x, y];
+                    if (tile.IsOccupied)
                     {
-                        //temp
-                        //Debug.Log("Match found, stopping further checks.");
-                        return true;
+                        // If a match is found, break out of both loops
+                        if (CheckTileMatches(tileGrid[x, y]))
+                        {
+                            //temp
+                            //Debug.Log("Match found, stopping further checks.");
+                            return true;
+                        }
                     }
                 }
             }
 
+            GlobalBinder.singleton.InputHandler.UnlockInput();
             return false;
         }
 

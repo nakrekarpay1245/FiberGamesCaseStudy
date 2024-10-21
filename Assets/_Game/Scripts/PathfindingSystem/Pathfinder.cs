@@ -24,6 +24,7 @@ namespace CS3D.Pathfinding
         public bool TryMoveToTile(Tile targetTile)
         {
             bool success = false;
+
             if (_pathTiles.Count > 0)
             {
                 _pathTiles.Clear();
@@ -60,6 +61,9 @@ namespace CS3D.Pathfinding
             {
                 _pathTiles.Add(tile);
             }
+
+            float time = _pathTiles.Count * GlobalBinder.singleton.TimeManager.TileMovementTime;
+            GlobalBinder.singleton.InputHandler.LockInput();
 
             success = true;
             return success;

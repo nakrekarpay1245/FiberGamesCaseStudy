@@ -441,7 +441,7 @@ MonoBehaviour:
   _coinStackPrefab: {fileID: 448371544098613818, guid: d84b0384de65dff4e8b4c48101c27a6d,
     type: 3}
   _coinStackPoint: {fileID: 1858009058}
-  _horizontalSpace: 2.5
+  _verticalSpace: 2.5
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,6 +1760,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameData: {fileID: 11400000, guid: 693e168b1b1a8324d992969fa945176e, type: 2}
+  OnLevelStart:
+    m_PersistentCalls:
+      m_Calls: []
   OnLevelComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -2786,6 +2789,7 @@ MonoBehaviour:
   _coinManager: {fileID: 1094077339}
   _uiManager: {fileID: 830781417}
   _levelManager: {fileID: 1086047836}
+  _inputHandler: {fileID: 1192370262}
 --- !u!1 &1679769726
 GameObject:
   m_ObjectHideFlags: 0

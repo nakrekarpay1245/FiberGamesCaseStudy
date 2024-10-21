@@ -192,6 +192,8 @@ namespace CS3D.CoinSystem
             Coin removedCoin = _coinList[_coinList.Count - 1];
             _coinList.RemoveAt(_coinList.Count - 1);
             ScaleAndDestroyCoin(removedCoin);
+
+            GlobalBinder.singleton.InputHandler.LockInput();
         }
 
         /// <summary>

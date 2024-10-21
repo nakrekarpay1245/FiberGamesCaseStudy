@@ -2,6 +2,7 @@ using _Game._helpers.Audios;
 using _Game._helpers.Particles;
 using _Game._helpers.PopUp;
 using _Game._helpers.TimeManagement;
+using _Game.InputHandling;
 using CS3D.CoinSystem;
 using CS3D.LevelSystem;
 using CS3D.MatchSystem;
@@ -55,6 +56,9 @@ namespace _Game._helpers
 
         [Tooltip("")]
         [SerializeField] private LevelManager _levelManager;
+        
+        [Tooltip("")]
+        [SerializeField] private InputHandler _inputHandler;
 
         /// <summary>
         /// Provides public access to the AudioManager instance.
@@ -162,6 +166,15 @@ namespace _Game._helpers
         {
             get => _levelManager;
             private set => _levelManager = value;
+        }
+
+        /// <summary>
+        /// Provides public access to the LevelManager instance.
+        /// </summary>
+        public InputHandler InputHandler
+        {
+            get => _inputHandler;
+            private set => _inputHandler = value;
         }
     }
 }

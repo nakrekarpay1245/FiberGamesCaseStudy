@@ -4,24 +4,48 @@ namespace _Game.InputHandling
 {
     /// <summary>
     /// Handles player input, including mouse position and button events.
-    /// Uses a PlayerInputSO ScriptableObject to trigger corresponding input events.
+    /// Utilizes a PlayerInputSO ScriptableObject to trigger corresponding input events.
     /// This class is designed following SOLID principles for modular and testable code.
+    /// It provides functionality to temporarily lock and unlock input handling.
     /// </summary>
     public class InputHandler : MonoBehaviour
     {
         [Header("Input Settings")]
-        [Tooltip("ScriptableObject for handling player input.")]
+        [Tooltip("ScriptableObject for handling player input events.")]
         [SerializeField] private PlayerInputSO _playerInput; // PlayerInput ScriptableObject to manage input events
+
+        private bool _inputLocked; // Flag to indicate whether input is currently locked
 
         private void Update()
         {
-            HandleMousePositionInput();
-            HandleMouseButtonInput();
+            if (!_inputLocked) // Check if input is not locked before processing
+            {
+                HandleMousePositionInput();
+                HandleMouseButtonInput();
+            }
         }
 
         /// <summary>
-        /// Retrieves and forwards mouse position input to the PlayerInputSO.
-        /// Passes the raw mouse screen position (not world space) to the input system.
+        /// Temporarily locks the input handling to prevent player input processing.
+        /// Call this method to disable input events until UnlockInput is called.
+        /// </summary>
+        public void LockInput()
+        {
+            _inputLocked = true; // Set the input locked flag to true
+        }
+
+        /// <summary>
+        /// Unlocks the input immediately, allowing player input processing to resume.
+        /// Call this method to re-enable input events.
+        /// </summary>
+        public void UnlockInput()
+        {
+            _inputLocked = false; // Set the input locked flag to false
+        }
+
+        /// <summary>
+        /// Retrieves and forwards the mouse position input to the PlayerInputSO.
+        /// Passes the raw mouse screen position (in pixels) to the input system.
         /// </summary>
         private void HandleMousePositionInput()
         {
@@ -30,7 +54,7 @@ namespace _Game.InputHandling
         }
 
         /// <summary>
-        /// Retrieves the raw mouse position from the screen coordinates.
+        /// Retrieves the current mouse position from the screen coordinates.
         /// This is a 2D position (in pixels) representing where the mouse is on the screen.
         /// </summary>
         /// <returns>Vector2 representing the mouse position on the screen.</returns>
