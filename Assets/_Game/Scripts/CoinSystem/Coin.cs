@@ -28,31 +28,15 @@ namespace CS3D.CoinSystem
         [Tooltip("Renderer component of the coin for changing color.")]
         [SerializeField] private TrailRenderer _coinTrailRenderer;
 
-        [Header("Coin Levels and Colors")]
-        [Tooltip("List of coin levels and their corresponding colors.")]
-        [SerializeField]
-        private List<CoinLevelData> _coinLevelDataList = new List<CoinLevelData>
-                {
-                    new CoinLevelData(CoinLevel.Level1, Color.red),
-                    new CoinLevelData(CoinLevel.Level2, Color.blue),
-                    new CoinLevelData(CoinLevel.Level3, Color.green),
-                    new CoinLevelData(CoinLevel.Level4, Color.yellow),
-                    new CoinLevelData(CoinLevel.Level5, Color.magenta),
-                    new CoinLevelData(CoinLevel.Level6, Color.cyan),
-                    new CoinLevelData(CoinLevel.Level7, Color.gray),
-                    new CoinLevelData(CoinLevel.Level8, Color.white)
-                };
-
         /// <summary>
         /// Gets the level of the coin.
         /// </summary>
         public CoinLevel Level
         {
             get => _coinLevel;
-            set
+            private set
             {
                 _coinLevel = value;
-                UpdateCoinVisuals();
             }
         }
 
@@ -61,6 +45,13 @@ namespace CS3D.CoinSystem
             _coinLevelText = GetComponentInChildren<TextMeshPro>();
             _coinMeshRenderer = GetComponentInChildren<MeshRenderer>();
             _coinTrailRenderer = GetComponentInChildren<TrailRenderer>();
+        }
+
+        public void Initialize(CoinLevel coinLevel, int score, Color coinColor)
+        {
+            _coinLevel = coinLevel;
+            string scoreText = score.ToString();
+            UpdateCoinVisuals(scoreText, coinColor);
         }
 
         /// <summary>
@@ -103,18 +94,16 @@ namespace CS3D.CoinSystem
         /// <summary>
         /// Updates the coin's visuals based on its level, including text display and color.
         /// </summary>
-        private void UpdateCoinVisuals()
+        private void UpdateCoinVisuals(string scoreText, Color coinColor)
         {
             // Update the text to display the coin's level number
-            _coinLevelText.text = ((int)_coinLevel + 1).ToString();
+            _coinLevelText.text = scoreText;
 
-            // Find the corresponding color for the current coin level and apply it to the renderer
-            CoinLevelData data = _coinLevelDataList.Find(item => item.Level == _coinLevel);
-            if (data != null && _coinMeshRenderer != null && _coinTrailRenderer != null)
+            if (_coinMeshRenderer != null && _coinTrailRenderer != null)
             {
-                _coinMeshRenderer.material.color = data.CoinColor;
-                _coinTrailRenderer.startColor = data.CoinColor;
-                _coinTrailRenderer.endColor = data.CoinColor;
+                _coinMeshRenderer.material.color = coinColor;
+                _coinTrailRenderer.startColor = coinColor;
+                _coinTrailRenderer.endColor = coinColor;
             }
         }
     }

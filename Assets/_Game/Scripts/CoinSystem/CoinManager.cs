@@ -1,4 +1,5 @@
 using _Game._helpers;
+using CS3D._Enums;
 using CS3D.CoinSystem;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,21 @@ public class CoinManager : MonoBehaviour
 
     [Tooltip("Size of the object pool.")]
     [SerializeField, Range(50, 500)] private int _poolSize = 10;
+
+    [Header("Coin Levels and Colors")]
+    [Tooltip("List of coin levels and their corresponding colors.")]
+    [SerializeField]
+    private List<CoinLevelData> _coinLevelDataList = new List<CoinLevelData>
+                {
+                    new CoinLevelData(CoinLevel.Level1, Color.red),
+                    new CoinLevelData(CoinLevel.Level2, Color.blue),
+                    new CoinLevelData(CoinLevel.Level3, Color.green),
+                    new CoinLevelData(CoinLevel.Level4, Color.yellow),
+                    new CoinLevelData(CoinLevel.Level5, Color.magenta),
+                    new CoinLevelData(CoinLevel.Level6, Color.cyan),
+                    new CoinLevelData(CoinLevel.Level7, Color.gray),
+                    new CoinLevelData(CoinLevel.Level8, Color.white)
+                };
 
     private ObjectPool<Coin> _coinPool;
 
@@ -52,9 +68,17 @@ public class CoinManager : MonoBehaviour
     /// <summary>
     /// Displays a pop-up text at the specified position with optional custom duration.
     /// </summary>
-    public Coin GetCoin(Vector3 position, Transform parent)
+    public Coin GetCoin(Vector3 position, Transform parent, CoinLevel coinLevel)
     {
         Coin coin = _coinPool.GetObject();
+
+        int score = (int)coinLevel + 1;
+
+        CoinLevelData data = _coinLevelDataList.Find(item => item.Level == coinLevel);
+        Color coinColor = data.CoinColor;
+
+        coin.Initialize(coinLevel, score, coinColor);
+
         coin.transform.parent = parent;
         coin.transform.localScale = Vector3.one;
         coin.transform.rotation = Quaternion.identity;

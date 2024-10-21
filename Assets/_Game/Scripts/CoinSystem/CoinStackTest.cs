@@ -79,8 +79,8 @@ namespace CS3D.CoinSystem
 
             if (coin != null)
             {
-                // Set the coin level based on the selected enum
-                coin.Level = _coinLevelToAdd;
+                //// Set the coin level based on the selected enum
+                //coin.Level = _coinLevelToAdd;
 
                 // Add the coin to the first stack
                 _coinStack1.AddCoin(coin);

@@ -137,10 +137,10 @@ namespace CS3D.CoinSystem
         {
             if (GlobalBinder.singleton.CoinManager != null)
             {
-                Coin coin = GlobalBinder.singleton.CoinManager.GetCoin(transform.position, transform);
+                Coin coin = GlobalBinder.singleton.CoinManager.GetCoin(transform.position, transform, level);
                 if (coin != null)
                 {
-                    coin.Level = level; // Set the current level to the coin
+                    //coin.Level = level; // Set the current level to the coin
                     return coin;
                 }
             }
