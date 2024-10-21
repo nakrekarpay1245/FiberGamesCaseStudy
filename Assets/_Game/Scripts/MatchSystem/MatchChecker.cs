@@ -28,7 +28,8 @@ namespace CS3D.MatchSystem
                     // If a match is found, break out of both loops
                     if (CheckTileMatches(tileGrid[x, y]))
                     {
-                        Debug.Log("Match found, stopping further checks.");
+                        //temp
+                        //Debug.Log("Match found, stopping further checks.");
                         return true;
                     }
                 }
@@ -142,7 +143,8 @@ namespace CS3D.MatchSystem
                     firstTile.EnsureCoinWeightLimit();
                     neighborTile.EnsureCoinWeightLimit();
                 }
-                Debug.Log("Match handling completed.");
+                //temp
+                //Debug.Log("Match handling completed.");
             });
 
             // Append the individual match sequence to the global match checking sequence

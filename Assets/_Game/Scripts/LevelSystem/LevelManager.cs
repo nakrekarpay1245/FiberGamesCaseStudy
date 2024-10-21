@@ -33,6 +33,7 @@ namespace CS3D.LevelSystem
         [SerializeField] private string _levelFailSoundKey = "level_fail";
 
         private bool _isLevelEnded; // Flag to track if the level has ended
+        private bool _isLevelStarted; // Flag to track if the level has ended
 
         private void Start()
         {
@@ -41,8 +42,13 @@ namespace CS3D.LevelSystem
 
         public void StartLevel()
         {
-            _isLevelEnded = false;
-            OnLevelStart?.Invoke();
+            if (!_isLevelStarted)
+            {
+                _isLevelStarted = true;
+                _isLevelEnded = false;
+                OnLevelStart?.Invoke();
+                Debug.Log("StartLevel!");
+            }
         }
 
         /// <summary>
@@ -56,7 +62,7 @@ namespace CS3D.LevelSystem
                 return;
             }
 
-            _isLevelEnded = true;
+            ResetLevelState();
             Debug.Log("Level Completed");
 
             // Play completion sound using the audio manager service
@@ -76,7 +82,7 @@ namespace CS3D.LevelSystem
                 return;
             }
 
-            _isLevelEnded = true;
+            ResetLevelState();
             Debug.Log("Level Failed");
 
             // Play failure sound using the audio manager service
@@ -90,7 +96,8 @@ namespace CS3D.LevelSystem
         /// </summary>
         public void ResetLevelState()
         {
-            _isLevelEnded = false;
+            _isLevelEnded = true;
+            _isLevelStarted = false;
             Debug.Log("Level state has been reset.");
         }
     }

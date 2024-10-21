@@ -114,10 +114,11 @@ namespace _Game.InputHandling
                 {
                     GlobalBinder.singleton.LevelManager.FailLevel();
                 }
-                else
-                {
-                    Debug.Log("Empty tile is: " + GlobalBinder.singleton.TileGrid.GetStartTile(_currentPathfinder.transform.position));
-                }
+                //temp
+                //else
+                //{
+                //    Debug.Log("Empty tile is: " + GlobalBinder.singleton.TileGrid.GetStartTile(_currentPathfinder.transform.position));
+                //}
             }
         }
     }

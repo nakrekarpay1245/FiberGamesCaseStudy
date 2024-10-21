@@ -127,7 +127,8 @@ namespace CS3D.UI
         /// <param name="levelNumber">The number of the level that was completed.</param>
         public void ShowLevelCompleteUI(int levelNumber)
         {
-            Debug.Log("ShowLevelCompleteUI!");
+            //temp
+            //Debug.Log("ShowLevelCompleteUI!");
             HideAllUIElements();
 
             // Show relevant UI elements for level completion with staggered animation
@@ -170,7 +171,8 @@ namespace CS3D.UI
         /// </summary>
         private void RestartLevel()
         {
-            Debug.Log("Restarting Level...");
+            //temp
+            //Debug.Log("Restarting Level...");
             GlobalBinder.singleton.LevelManager.StartLevel();
         }
 
@@ -179,7 +181,8 @@ namespace CS3D.UI
         /// </summary>
         private void StartNextLevel()
         {
-            Debug.Log("Starting Next Level...");
+            //temp
+            //Debug.Log("Starting Next Level...");
             GlobalBinder.singleton.LevelManager.StartLevel();
         }
     }

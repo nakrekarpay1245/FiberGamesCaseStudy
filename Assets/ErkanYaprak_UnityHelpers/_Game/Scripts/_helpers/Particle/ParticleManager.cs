@@ -134,14 +134,14 @@ namespace _Game._helpers.Particles
             particle.gameObject.SetActive(true);
             particle.Play();
 
-            if (!particle.main.loop)
-            {
-                Debug.Log($"{particle.name} is not looping");
-            }
-            else
-            {
-                Debug.Log($"{particle.name} is looping");
-            }
+            //if (!particle.main.loop)
+            //{
+            //    Debug.Log($"{particle.name} is not looping");
+            //}
+            //else
+            //{
+            //    Debug.Log($"{particle.name} is looping");
+            //}
         }
     }
 }

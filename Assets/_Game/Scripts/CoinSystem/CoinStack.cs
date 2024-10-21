@@ -83,11 +83,19 @@ namespace CS3D.CoinSystem
 
         private void Start()
         {
+            //Debug.Log("CoinStack: Registering DestroyHimself with OnLevelStart event.");
             GlobalBinder.singleton.LevelManager.OnLevelStart.AddListener(DestroyHimself);
         }
 
         private void DestroyHimself()
         {
+            //Debug.Log("CoinStack: DestroyHimself called.");
+            for (int i = 0; i < _coinList.Count; i++)
+            {
+                RemoveAndDestroyCoin();
+            }
+
+            //Debug.Log("CoinStack: Destroying game object.");
             Destroy(gameObject);
         }
 
