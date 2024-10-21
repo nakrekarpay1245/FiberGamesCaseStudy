@@ -94,6 +94,8 @@ namespace CS3D.TileSystem
             private set => _isReserved = value;
         }
 
+        public bool IsBusy;
+
         /// <summary>
         /// Initializes the tile with its grid position and its placeable status.
         /// This method sets up the tile's position in the grid and defines whether it is placeable or not.

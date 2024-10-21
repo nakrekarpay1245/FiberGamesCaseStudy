@@ -41,8 +41,11 @@ namespace _Game._helpers
         [Tooltip("")]
         [SerializeField] private CoinStackManager _coinStackManager;
 
+        //[Tooltip("")]
+        //[SerializeField] private MatchChecker _matchChecker;
+
         [Tooltip("")]
-        [SerializeField] private MatchChecker _matchChecker;
+        [SerializeField] private MatchCheck _matchCheck;
 
         [Tooltip("")]
         [SerializeField] private ProgressManager _progressManager;
@@ -119,13 +122,22 @@ namespace _Game._helpers
             private set => _coinStackManager = value;
         }
 
+        ///// <summary>
+        ///// Provides public access to the MatchChecker instance.
+        ///// </summary>
+        //public MatchChecker MatchChecker
+        //{
+        //    get => _matchChecker;
+        //    private set => _matchChecker = value;
+        //}
+
         /// <summary>
         /// Provides public access to the MatchChecker instance.
         /// </summary>
-        public MatchChecker MatchChecker
+        public MatchCheck MatchCheck
         {
-            get => _matchChecker;
-            private set => _matchChecker = value;
+            get => _matchCheck;
+            private set => _matchCheck = value;
         }
 
         /// <summary>

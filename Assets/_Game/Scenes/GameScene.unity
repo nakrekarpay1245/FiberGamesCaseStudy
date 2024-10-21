@@ -441,7 +441,7 @@ MonoBehaviour:
   _coinStackPrefab: {fileID: 448371544098613818, guid: d84b0384de65dff4e8b4c48101c27a6d,
     type: 3}
   _coinStackPoint: {fileID: 1858009058}
-  _horizontalSpace: 2.5
+  _verticalSpace: 2.5
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,7 +1687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1068819218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1760,6 +1760,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameData: {fileID: 11400000, guid: 693e168b1b1a8324d992969fa945176e, type: 2}
+  OnLevelStart:
+    m_PersistentCalls:
+      m_Calls: []
   OnLevelComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -1858,13 +1861,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574bf0b7d8604c44f9c145410147911b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinScaleChangeDuration: 0.25
-  _coinRemovalInterval: 0.025
+  _coinScaleChangeDuration: 0.5
+  _coinRemovalInterval: 0.1
   _coinFlipMovementDuration: 0.25
-  _tileMovementTime: 0.05
-  _coinTransferInterval: 0.05
-  _matchProcessingDelay: 0.35
-  _matchCheckInterval: 0.1
+  _tileMovementTime: 0.1
+  _coinTransferInterval: 0.1
+  _matchProcessingDelay: 0.5
+  _matchCheckInterval: 0.5
   _progressBarFillTime: 0.25
 --- !u!1 &1192370260
 GameObject:
@@ -2781,7 +2784,7 @@ MonoBehaviour:
   _tileGrid: {fileID: 73056091}
   _pathfinding: {fileID: 1790480834}
   _coinStackManager: {fileID: 325818177}
-  _matchChecker: {fileID: 1068819218}
+  _matchCheck: {fileID: 1996354067}
   _progressManager: {fileID: 374809801}
   _coinManager: {fileID: 1094077339}
   _uiManager: {fileID: 830781417}
@@ -2890,6 +2893,7 @@ Transform:
   - {fileID: 1192370261}
   - {fileID: 1086047835}
   - {fileID: 1068819219}
+  - {fileID: 1996354066}
   - {fileID: 1610931591}
   - {fileID: 1790480835}
   - {fileID: 816149013}
@@ -3219,6 +3223,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1996354065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1996354066}
+  - component: {fileID: 1996354067}
+  m_Layer: 0
+  m_Name: MatchCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1996354066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996354065}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1681179100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1996354067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996354065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af46036b15162b0469296382834a7f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2064707639
 GameObject:
   m_ObjectHideFlags: 0

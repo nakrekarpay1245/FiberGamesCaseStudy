@@ -30,7 +30,6 @@ namespace _Game.InputHandling
         public string _tileMovementSoundKey = "tile_move";
         [Tooltip("")]
         public string _tileClickSoundKey = "tile_click";
-
         private void OnEnable()
         {
             // Subscribe to PlayerInput events when this object is enabled
@@ -90,7 +89,8 @@ namespace _Game.InputHandling
 
                         UpdatePathfinder();
 
-                        GlobalBinder.singleton.MatchChecker.CheckForMatches();
+                        //GlobalBinder.singleton.MatchChecker.CheckForMatches();
+                        GlobalBinder.singleton.MatchCheck.CheckForMatch();
 
                         GlobalBinder.singleton.AudioManager.PlaySound(_tileClickSoundKey);
                     }

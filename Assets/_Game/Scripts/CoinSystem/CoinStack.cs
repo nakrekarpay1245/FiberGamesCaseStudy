@@ -248,7 +248,7 @@ namespace CS3D.CoinSystem
         public void CheckAndDestroyTopCoinsIfWeightExceedsLimit()
         {
             int weightTileCount = Weight;
-
+            Debug.Log(Weight);
             // Only proceed if the weight exceeds the limit
             if (weightTileCount >= _maxWeightLimit)
             {
@@ -266,7 +266,8 @@ namespace CS3D.CoinSystem
                 // Optionally, you can add a completion callback to handle any logic after removal
                 coinRemovalSequence.OnComplete(() =>
                 {
-                    GlobalBinder.singleton.MatchChecker.CheckForMatches();
+                    //GlobalBinder.singleton.MatchChecker.CheckForMatches();
+                    GlobalBinder.singleton.MatchCheck.CheckForMatch();
                     //Debug.Log("Coin removal complete. Weight is now below the limit.");
                 });
             }
