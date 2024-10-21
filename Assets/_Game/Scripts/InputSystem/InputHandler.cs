@@ -1,3 +1,4 @@
+using _Game._helpers;
 using UnityEngine;
 
 namespace _Game.InputHandling
@@ -15,6 +16,11 @@ namespace _Game.InputHandling
         [SerializeField] private PlayerInputSO _playerInput; // PlayerInput ScriptableObject to manage input events
 
         private bool _inputLocked; // Flag to indicate whether input is currently locked
+
+        private void Start()
+        {
+            GlobalBinder.singleton.LevelManager.OnLevelStart.AddListener(UnlockInput);
+        }
 
         private void Update()
         {

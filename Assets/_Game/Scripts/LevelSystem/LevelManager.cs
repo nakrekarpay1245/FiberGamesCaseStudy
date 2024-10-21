@@ -47,7 +47,8 @@ namespace CS3D.LevelSystem
                 _isLevelStarted = true;
                 _isLevelEnded = false;
                 OnLevelStart?.Invoke();
-                Debug.Log("StartLevel!");
+                //temp
+                //Debug.Log("StartLevel!");
             }
         }
 
@@ -63,7 +64,8 @@ namespace CS3D.LevelSystem
             }
 
             ResetLevelState();
-            Debug.Log("Level Completed");
+            //temp
+            //Debug.Log("Level Completed");
 
             // Play completion sound using the audio manager service
             GlobalBinder.singleton.AudioManager.PlaySound(_levelCompleteSoundKey);
@@ -83,7 +85,8 @@ namespace CS3D.LevelSystem
             }
 
             ResetLevelState();
-            Debug.Log("Level Failed");
+            //temp
+            //Debug.Log("Level Failed");
 
             // Play failure sound using the audio manager service
             GlobalBinder.singleton.AudioManager.PlaySound(_levelFailSoundKey);
@@ -98,7 +101,8 @@ namespace CS3D.LevelSystem
         {
             _isLevelEnded = true;
             _isLevelStarted = false;
-            Debug.Log("Level state has been reset.");
+            //temp
+            //Debug.Log("Level state has been reset.");
         }
     }
 }

@@ -70,7 +70,6 @@ MonoBehaviour:
   _isPlaceable: 1
   _isOccupied: 0
   _isReserved: 0
-  _pathVisualizer: {fileID: 0}
   _tileObstaclePrefabResourceKey: Tile/TileObstacle
   _coinStack: {fileID: 0}
 --- !u!1001 &4143864734574153503
@@ -89,7 +88,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a82e0d6e32920034f9e9182ea21a8369,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a82e0d6e32920034f9e9182ea21a8369,
         type: 3}

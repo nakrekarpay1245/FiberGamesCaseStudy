@@ -66,10 +66,9 @@ namespace CS3D.ProgressSystem
         /// </summary>
         private void LevelComplete()
         {
-            Debug.Log("Level Complete! You've scored enough points.");
+            //temp
+            //Debug.Log("Level Complete! You've scored enough points.");
             GlobalBinder.singleton.LevelManager.CompleteLevel();
-            // Trigger win logic or transition to the next level here.
-            // Example: Load next level, show victory screen, etc.
         }
     }
 }

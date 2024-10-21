@@ -92,7 +92,15 @@ namespace CS3D.CoinSystem
             //Debug.Log("CoinStack: DestroyHimself called.");
             for (int i = 0; i < _coinList.Count; i++)
             {
-                RemoveAndDestroyCoin();
+                if (_coinList.Count == 0)
+                {
+                    Debug.LogWarning("Coin list is empty. No coin to remove.");
+                    return;
+                }
+
+                // Remove the coin from the top of the list
+                Coin removedCoin = _coinList[_coinList.Count - 1];
+                ScaleAndDestroyCoin(removedCoin);
             }
 
             //Debug.Log("CoinStack: Destroying game object.");
